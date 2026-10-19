@@ -1,4 +1,4 @@
-<h1 align="center">talk-skills</h1>
+<h1 align="center">writing-standard-skills</h1>
 
 <p align="center">
   把话说对的四步：搭骨架 → 定读者 → 调语气 → 当读者读一遍。<br/>
@@ -13,7 +13,7 @@
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`talk-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 6 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
+**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 6 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
 
 ---
 
@@ -57,7 +57,7 @@
 ./install.sh
 
 # 方式 B：远程一行全自动接入
-curl -fsSL https://raw.githubusercontent.com/webkubor/talk-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install.sh | bash
 ```
 
 > **提示**：采用软链接直连模式，后续源码无论怎么修改迭代，所有 Agent 均实时生效，无需重复安装。其他 Agent 与配置细节见 [AGENTS.md](AGENTS.md)。
@@ -69,7 +69,7 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/talk-skills/main/install.s
 
 | 说什么 | 长什么样 | 怎么念 | 在哪写 |
 |---|---|---|---|
-| **talk-skills** | [facet](https://github.com/webkubor/facet) | [voxflow](https://github.com/webkubor/voxflow) | [typora-Bloom-theme](https://github.com/webkubor/typora-Bloom-theme) |
+| **writing-standard-skills** | [facet](https://github.com/webkubor/facet) | [voxflow](https://github.com/webkubor/voxflow) | [typora-Bloom-theme](https://github.com/webkubor/typora-Bloom-theme) |
 | 结构 · 语气 · 归属 | 字阶 · 留白 · 分页 · 渲染 | 声音设计 · 戏感 · 停顿 | 编辑器环境 |
 
 一句话判归属：「该说什么、先说哪句、这话得罪人吗」→ 本仓；「字号多大、留多少白」→ facet；「这句怎么念」→ voxflow。完整分工见 [BOUNDARY.md](BOUNDARY.md)。

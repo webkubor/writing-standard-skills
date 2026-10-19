@@ -1,4 +1,4 @@
-<h1 align="center">talk-skills</h1>
+<h1 align="center">writing-standard-skills</h1>
 
 <p align="center">
   Four steps to say it right: skeleton → audience → tone → read as the reader.<br/>
@@ -13,7 +13,7 @@
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`talk-skills` is the collection name, not a skill name.** What lands in your agent are the 6 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
+**`writing-standard-skills` is the collection name, not a skill name.** What lands in your agent are the 6 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
 
 ---
 
@@ -57,7 +57,7 @@ Automatically link to **~/.agents/skills** global standard center, **Claude Code
 ./install.sh
  
 # Option B: One-line remote installation
-curl -fsSL https://raw.githubusercontent.com/webkubor/talk-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install.sh | bash
 ```
  
 > **Note**: Uses symlinks. Any future modifications to the local source code take effect immediately across all agents without reinstallation. See [AGENTS.md](AGENTS.md) for more agent configurations.
@@ -69,7 +69,7 @@ Expression splits into four layers. This repo owns only the first; the rest live
 
 | What to say | What it looks like | How it's spoken | Where you write |
 |---|---|---|---|
-| **talk-skills** | [facet](https://github.com/webkubor/facet) | [voxflow](https://github.com/webkubor/voxflow) | [typora-Bloom-theme](https://github.com/webkubor/typora-Bloom-theme) |
+| **writing-standard-skills** | [facet](https://github.com/webkubor/facet) | [voxflow](https://github.com/webkubor/voxflow) | [typora-Bloom-theme](https://github.com/webkubor/typora-Bloom-theme) |
 | structure · tone · attribution | type scale · whitespace · pagination · rendering | voice design · stage presence · pacing | editor environment |
 
 Quick ownership test: "what should I say, in what order, will this offend?" → this repo. "How big a font, how much whitespace?" → facet. "How do I deliver this line?" → voxflow. Full breakdown in [BOUNDARY.md](BOUNDARY.md).

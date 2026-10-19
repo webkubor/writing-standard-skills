@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# talk-skills — 全 Agent 一键智能初始化与软链接接入脚本
+# writing-standard-skills — 全 Agent 一键智能初始化与软链接接入脚本
 #
 # 支持目标：
 #   1. 全局标准中心 : ~/.agents/skills/
@@ -22,7 +22,7 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m'
 
-echo -e "${CYAN}🚀 开始初始化 talk-skills 接入各大 Agent 运行时与本地 GUI...${NC}"
+echo -e "${CYAN}🚀 开始初始化 writing-standard-skills 接入各大 Agent 运行时与本地 GUI...${NC}"
 
 # 1. 待分发的 Skills 清单
 SKILLS=(
@@ -68,12 +68,12 @@ done
 
 # 4. 同步原子矩阵速查文件至 ~/.agents/
 if [ -f "${SOURCE_SKILLS_DIR}/atomic-matrix.md" ]; then
-  ln -sfn "${SOURCE_SKILLS_DIR}/atomic-matrix.md" "${HOME}/.agents/skills/talk-skills-atomic-matrix.md"
-  echo -e "${GREEN}   ✅ 5D 原子表达组合矩阵已挂载至 ~/.agents/skills/talk-skills-atomic-matrix.md${NC}"
+  ln -sfn "${SOURCE_SKILLS_DIR}/atomic-matrix.md" "${HOME}/.agents/skills/writing-standard-skills-atomic-matrix.md"
+  echo -e "${GREEN}   ✅ 5D 原子表达组合矩阵已挂载至 ~/.agents/skills/writing-standard-skills-atomic-matrix.md${NC}"
 fi
 
 echo -e "\n${CYAN}════════════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}🎉 talk-skills (v2.0.0) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
+echo -e "${GREEN}🎉 writing-standard-skills (v2.0.0) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
 echo -e "   • 包含平台: DSH / Claude Code / Codex / Antigravity GUI"
 echo -e "   • 模式: 软链接直连 (本地源码修改后所有 Agent 即时生效，无需重装)"
 echo -e "${CYAN}════════════════════════════════════════════════════════════════${NC}"

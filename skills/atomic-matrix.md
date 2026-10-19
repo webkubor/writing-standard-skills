@@ -87,7 +87,7 @@
 
 ```bash
 # 示例：让 Agent 组合出一条小红书技术辟坑文案
-talk-skills compose \
+writing-standard-skills compose \
   --persona P1 \
   --platform M2 \
   --scenario S4 \

@@ -9,7 +9,7 @@
 ```bash
 ./install.sh
 # 或
-curl -fsSL https://raw.githubusercontent.com/webkubor/talk-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install.sh | bash
 ```
 
 | Agent / 运行时 / GUI | 自动接入路径 | 说明 |
