@@ -1,2 +1,6 @@
 .DS_Store
 node_modules/
+
+# 技能使用痕迹 —— 运行时产物，由 skill 机制写入，不进仓库
+skills/**/.last_used
+skills/**/.use_count

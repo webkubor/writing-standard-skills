@@ -13,6 +13,8 @@
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
+**`talk-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 6 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
+
 ---
 
 写文档、提单、发动态、做客诉接待——**内容对了但没人看完，或者看完了充斥着一股 AI 假人味**，通常不是内容问题，是这四件事没按顺序做，且缺乏细颗粒度的场域与语气拼装：
@@ -28,15 +30,22 @@
 
 ## 六个 skill 与原子矩阵
 
-| skill / 矩阵 | 管什么 | 什么时候用 |
+目录名 = 触发名。装上后你的 Agent 认的是左边这一列。
+
+| skill（触发名） | 管什么 | 什么时候用 |
 |---|---|---|
-| **how-to-write** | 总纲：上面四步的完整方法 | 写任何要给别人看的文字之前 |
-| **atomic-matrix** | **5D 原子表达组合矩阵**：[查看速查表](skills/atomic-matrix.md) | 需要像拼积木一样拼装 [谁]×[在哪]×[场景]×[口吻]×[接待词] 时 |
-| **platform-voices** | 全平台表达风格分册：网易云/小红书/X/GitHub/公众号 | 针对特定平台的受众心智发帖与创作时 |
-| **scenario-openers** | 场景接待词、破冰与去 AI 味真实表达规范 | 客诉安抚、私信接待、神评开场、彻底消除 AI 论文腔 |
-| **peer-facing-writing** | 对同事的书面沟通：提单骨架、逐句替换表 | 写 issue、评审意见、跨团队报告 |
-| **talk-text-review** | 讲稿姿态：这份稿是「我教你们」还是「我跟你们聊」 | 对同级或高手分享之前 |
-| **talk-visual-review** | 讲稿视觉验收 | 出片之前 |
+| **[how-to-write](skills/how-to-write/)** | 总纲：上面四步的完整方法 | 写任何要给别人看的文字之前 |
+| **[peer-facing-writing](skills/peer-facing-writing/)** | 对同事的书面沟通：提单骨架、逐句替换表 | 写 issue、评审意见、跨团队报告 |
+| **[platform-voices](skills/platform-voices/)** | 全平台表达风格分册：网易云/小红书/X/GitHub/公众号 | 针对特定平台的受众心智发帖与创作时 |
+| **[scenario-openers](skills/scenario-openers/)** | 场景接待词、破冰与去 AI 味真实表达规范 | 客诉安抚、私信接待、神评开场、彻底消除 AI 论文腔 |
+| **[talk-text-review](skills/talk-text-review/)** | 讲稿姿态验收：这份稿是「我教你们」还是「我跟你们聊」 | 对同级或高手分享之前 |
+| **[talk-visual-review](skills/talk-visual-review/)** | 讲稿视觉验收 | 出片之前 |
+
+参考文档（**不是 skill，不会被自动触发**，需要时手动查阅）：
+
+| 文档 | 内容 |
+|---|---|
+| **[atomic-matrix.md](skills/atomic-matrix.md)** | [5D 原子表达组合矩阵](skills/atomic-matrix.md)：像拼积木一样拼装 [谁]×[在哪]×[场景]×[口吻]×[接待词] |
 
 
 ## 一键接入全 Agent 与本地 GUI（装上就能用）

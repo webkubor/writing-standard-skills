@@ -13,6 +13,8 @@
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
+**`talk-skills` is the collection name, not a skill name.** What lands in your agent are the 6 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
+
 ---
 
 Writing docs, filing tickets, posting updates, customer service — **when the content is right but nobody reads it, or it smells like generic robotic AI generation**, it's usually not the content's fault. It's these four steps done out of order, plus a lack of atomic granularity for audience minds:
@@ -28,15 +30,22 @@ The cost of skipping ④, measured: a 9,918-word technical report, after a read-
 
 ## Six skills and atomic matrix
 
-| Skill / Matrix | Covers | When to use |
+The directory name is the trigger name — that is what your agent matches on.
+
+| Skill (trigger name) | Covers | When to use |
 |---|---|---|
-| **how-to-write** | The full method — the four steps above | Before writing anything meant to be read by someone else |
-| **atomic-matrix** | **5D Atomic Expression Matrix**: [View CheatSheet](skills/atomic-matrix.md) | Composing custom [Who]×[Where]×[Scenario]×[Tone] blocks |
-| **platform-voices** | Platform mindsets: NetEase/Xiaohongshu/X/GitHub/WeChat | Publishing on specific media with platform-native voices |
-| **scenario-openers** | Scenario openers & Anti-AI authenticity guide | Customer inquiries, issue handling, hook phrases, killing AI taste |
-| **peer-facing-writing** | Written peer communication: ticket skeleton, per-sentence substitution table | Issues, review comments, cross-team reports |
-| **talk-text-review** | Talk posture: is this an "I'll teach you" or a "let's talk" piece | Before sharing with peers or seniors |
-| **talk-visual-review** | Visual acceptance for the deck | Before producing the final visual |
+| **[how-to-write](skills/how-to-write/)** | The full method — the four steps above | Before writing anything meant to be read by someone else |
+| **[peer-facing-writing](skills/peer-facing-writing/)** | Written peer communication: ticket skeleton, per-sentence substitution table | Issues, review comments, cross-team reports |
+| **[platform-voices](skills/platform-voices/)** | Platform mindsets: NetEase/Xiaohongshu/X/GitHub/WeChat | Publishing on specific media with platform-native voices |
+| **[scenario-openers](skills/scenario-openers/)** | Scenario openers & Anti-AI authenticity guide | Customer inquiries, issue handling, hook phrases, killing AI taste |
+| **[talk-text-review](skills/talk-text-review/)** | Talk posture: is this an "I'll teach you" or a "let's talk" piece | Before sharing with peers or seniors |
+| **[talk-visual-review](skills/talk-visual-review/)** | Visual acceptance for the deck | Before producing the final visual |
+
+Reference doc (**not a skill, never auto-triggered** — read it when you need it):
+
+| Doc | Contents |
+|---|---|
+| **[atomic-matrix.md](skills/atomic-matrix.md)** | The [5D Atomic Expression Matrix](skills/atomic-matrix.md): compose custom [Who]×[Where]×[Scenario]×[Tone]×[Opener] blocks |
 
 
 ## One-line Multi-Agent & Local GUI Integration
