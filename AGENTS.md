@@ -29,16 +29,19 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 要写的是给别人看的文字
 ├─ 不确定从哪下手        → how-to-write（总纲，四步顺序）
 ├─ 需要拼装特定人设/场域  → atomic-matrix（5D 积木矩阵，自由组合）
-├─ 特定平台社交内容创作  → platform-voices（网易云/小红书/X/GitHub/公众号媒介心智）
+├─ 社交平台内容与说说    → platform-voices（小红书/X/Reddit/掘金/网易云/公众号，附扣分清单）
 ├─ 寻找真实接待词/开场白  → scenario-openers（私信接待/神评开场/极客钩子/去AI味）
 ├─ GitLab/GitHub 单据、评审意见、跨团队报告
 │                        → peer-facing-writing
+├─ 线上故障通报、事故复盘 → technical-postmortem（时间线白描、5 Whys 机制下钻）
+├─ 架构方案与技术立项论证 → decision-and-rfc（权衡矩阵、墓碑方案、推翻红线）
+├─ 给老板、负责人极简汇报 → executive-briefing（仅限✅已完成/⏸拍板项，选项代价对齐）
 ├─ 分享稿、演讲稿、长文   → talk-text-review（先验姿态）
 │                          出片前再跑 talk-visual-review
 └─ 排版/渲染/出 PDF      → 不在本仓，见 BOUNDARY.md，用 facet
 ```
 
-**反触发**：写给自己 owner 的对话回复不适用本仓——那边要极简结论，客套是噪声。本仓管的是「给同侧和对外」的表达。
+**对上极简与对同侧沟通**：对同侧同事用 `peer-facing-writing`（留余地、给台阶、情境归因）；给负责人/Owner 汇报用 `executive-briefing`（极简结论、不铺过程、选项代价对齐）。两者场域完全解耦。
 
 ## 维护约定
 

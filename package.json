@@ -1,0 +1,20 @@
+{
+  "name": "writing-standard-skills",
+  "version": "1.3.0",
+  "description": "面向 AI agent 与人的写作规范技能集：结构、读者、语气与通读自检，含 9 个 skill、表达矩阵与去 AI 味门禁",
+  "type": "module",
+  "scripts": {
+    "lint": "node scripts/lint-writing.mjs skills/",
+    "test": "node scripts/lint-writing.mjs skills/"
+  },
+  "keywords": [
+    "writing-skills",
+    "prompt-engineering",
+    "anti-ai",
+    "claude-skills",
+    "codex-skills",
+    "technical-writing"
+  ],
+  "author": "webkubor",
+  "license": "MIT"
+}

@@ -7,13 +7,13 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-6-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-9-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 6 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
+**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 9 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
 
 ---
 
@@ -28,7 +28,7 @@
 
 跳过 ④ 的实测代价：一份 9918 字的技术报告，通读后揪出 20 处问题，**19 处是通读才发现的**——内容错位挂到邻节、引用已删章节、同一份文档两处结论互相打脸。脚本只能扫出词面残留。
 
-## 六个 skill 与原子矩阵
+## 九个 skill 与原子矩阵
 
 目录名 = 触发名。装上后你的 Agent 认的是左边这一列。
 
@@ -36,7 +36,10 @@
 |---|---|---|
 | **[how-to-write](skills/how-to-write/)** | 总纲：上面四步的完整方法 | 写任何要给别人看的文字之前 |
 | **[peer-facing-writing](skills/peer-facing-writing/)** | 对同事的书面沟通：提单骨架、逐句替换表 | 写 issue、评审意见、跨团队报告 |
-| **[platform-voices](skills/platform-voices/)** | 全平台表达风格分册：网易云/小红书/X/GitHub/公众号 | 针对特定平台的受众心智发帖与创作时 |
+| **[technical-postmortem](skills/technical-postmortem/)** | 严肃事故复盘与故障通报：时间线白描、5 Whys 机制下钻、物理防复发措施 | 线上故障、服务中断、负面公关通报时 |
+| **[decision-and-rfc](skills/decision-and-rfc/)** | 架构决策（ADR）与技术提案：本质矛盾量化、代价显式化、墓碑方案、推翻红线 | 架构评审、技术选型论证、重构立项时 |
+| **[executive-briefing](skills/executive-briefing/)** | 对负责人极简汇报：仅限【✅已完成】/【⏸拍板项】，互斥选项代价对齐 | 给老板、业务决策者与 Owner 汇报时 |
+| **[platform-voices](skills/platform-voices/)** | 全平台表达风格分册：小红书/X/Reddit/掘金/网易云/GitHub/公众号，附说说扣分清单 | 针对特定平台的受众心智发帖与创作时 |
 | **[scenario-openers](skills/scenario-openers/)** | 场景接待词、破冰与去 AI 味真实表达规范 | 客诉安抚、私信接待、神评开场、彻底消除 AI 论文腔 |
 | **[talk-text-review](skills/talk-text-review/)** | 讲稿姿态验收：这份稿是「我教你们」还是「我跟你们聊」 | 对同级或高手分享之前 |
 | **[talk-visual-review](skills/talk-visual-review/)** | 讲稿视觉验收 | 出片之前 |
@@ -46,6 +49,17 @@
 | 文档 | 内容 |
 |---|---|
 | **[atomic-matrix.md](skills/atomic-matrix.md)** | [5D 原子表达组合矩阵](skills/atomic-matrix.md)：像拼积木一样拼装 [谁]×[在哪]×[场景]×[口吻]×[接待词] |
+
+### 自动化去 AI 味门禁（Linter）
+
+自带开箱即用的静态检查脚本 `scripts/lint-writing.mjs`，无第三方依赖，可直接作为 Git pre-commit hook 或接入 CI，机械拦截假人过渡词、机械排比、高中作文腔与空洞正能量结尾：
+
+```bash
+# 本地自检
+node scripts/lint-writing.mjs skills/
+# 或通过 npm
+npm test
+```
 
 
 ## 一键接入全 Agent 与本地 GUI（装上就能用）

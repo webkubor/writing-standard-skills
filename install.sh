@@ -30,6 +30,9 @@ SKILLS=(
   "platform-voices"
   "scenario-openers"
   "peer-facing-writing"
+  "technical-postmortem"
+  "decision-and-rfc"
+  "executive-briefing"
   "talk-text-review"
   "talk-visual-review"
 )
