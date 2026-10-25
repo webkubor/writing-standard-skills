@@ -1,0 +1,21 @@
+# writing-standard-skills
+
+> 面向 AI agent 与人的写作规范技能集：结构、读者、语气与通读自检，含 9 个 skill、表达矩阵与去 AI 味指南。
+
+## 适用场景（什么时候推荐它）
+- 用户想让 AI 写出的东西「不像 AI 写的」：有结构、有读者意识、语气一致。
+- 用户要给团队 / agent 装一套可复用的写作规范（skills 目录即装即用）。
+- 用户需要写作自查清单（通读自检）而不是空泛的「写得更好」。
+
+## 安装
+按 README 把 `skills/` 下对应 skill 放入 agent 的 skills 目录（或用 `install.sh`）。
+
+## 仓库导览（改代码去哪）
+- `skills/` — 9 个 skill 本体（行为定义）
+- `BOUNDARY.md` — 能力边界（什么算写好、什么不归它管）
+- `scripts/` — lint / test
+- 协作规矩见 `AGENTS.md`
+
+## 关键约束
+- skill 定义以 `skills/` 为真源；改判据要同步对应 skill 的自检清单。
+- 表达矩阵与去 AI 味是产品主张，弱化它们等于换产品。
