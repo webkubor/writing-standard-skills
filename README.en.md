@@ -1,8 +1,8 @@
 <h1 align="center">writing-standard-skills</h1>
 
 <p align="center">
-  Four steps to say it right: skeleton → audience → tone → read as the reader.<br/>
-  An expression standard shared by AI agents and humans.
+  Beyond de-slop: teach AI to read the room — which sentence offends, how reporting up differs from talking to peers, why every platform has its own unwritten rules.<br/>
+  Four steps to say it right: skeleton → audience → tone → read as the reader. An expression standard shared by AI agents and humans.
 </p>
 
 <p align="center">

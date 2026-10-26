@@ -1,8 +1,8 @@
 <h1 align="center">writing-standard-skills</h1>
 
 <p align="center">
-  把话说对的四步：搭骨架 → 定读者 → 调语气 → 当读者读一遍。<br/>
-  给 AI agent 和人共用的表达规范。
+  不止去 AI 味——教 AI 人情世故：哪句话会得罪人、对上汇报和对同事吐槽是两套语法、换个平台要换一副心智。<br/>
+  把话说对的四步：搭骨架 → 定读者 → 调语气 → 当读者读一遍。给 AI agent 和人共用的表达规范。
 </p>
 
 <p align="center">
