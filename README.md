@@ -7,13 +7,13 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-9-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-10-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 9 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
+**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 10 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
 
 ---
 
@@ -35,6 +35,7 @@
 | skill（触发名） | 管什么 | 什么时候用 |
 |---|---|---|
 | **[how-to-write](skills/how-to-write/)** | 总纲：上面四步的完整方法 | 写任何要给别人看的文字之前 |
+| **[account-custody](skills/account-custody/)** | 账户托管前置检查：认平台→读人设→对口径→核环境（IP属地一致性） | Agent 替人接管社交账户、代运营发帖之前 |
 | **[peer-facing-writing](skills/peer-facing-writing/)** | 对同事的书面沟通：提单骨架、逐句替换表 | 写 issue、评审意见、跨团队报告 |
 | **[technical-postmortem](skills/technical-postmortem/)** | 严肃事故复盘与故障通报：时间线白描、5 Whys 机制下钻、物理防复发措施 | 线上故障、服务中断、负面公关通报时 |
 | **[decision-and-rfc](skills/decision-and-rfc/)** | 架构决策（ADR）与技术提案：本质矛盾量化、代价显式化、墓碑方案、推翻红线 | 架构评审、技术选型论证、重构立项时 |

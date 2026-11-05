@@ -27,6 +27,7 @@ echo -e "${CYAN}🚀 开始初始化 writing-standard-skills 接入各大 Agent 
 # 1. 待分发的 Skills 清单
 SKILLS=(
   "how-to-write"
+  "account-custody"
   "platform-voices"
   "scenario-openers"
   "peer-facing-writing"
