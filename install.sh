@@ -36,6 +36,7 @@ SKILLS=(
   "executive-briefing"
   "talk-text-review"
   "talk-visual-review"
+  "personal-companion"
 )
 
 # 2. 目标 Agent 目录列表 (目标路径, 标识名)

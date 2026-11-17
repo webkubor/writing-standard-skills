@@ -31,6 +31,8 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 ├─ 需要拼装特定人设/场域  → atomic-matrix（5D 积木矩阵，自由组合）
 ├─ 社交平台内容与说说    → platform-voices（小红书/X/Reddit/掘金/网易云/公众号，附扣分清单）
 ├─ 寻找真实接待词/开场白  → scenario-openers（私信接待/神评开场/极客钩子/去AI味）
+├─ 对亲近之人的日常私聊/提醒
+│                        → personal-companion（口语短句、纯文本零排版、提醒三段式、健康话题守边界）
 ├─ GitLab/GitHub 单据、评审意见、跨团队报告
 │                        → peer-facing-writing
 ├─ 线上故障通报、事故复盘 → technical-postmortem（时间线白描、5 Whys 机制下钻）

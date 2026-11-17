@@ -7,13 +7,13 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-9-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-11-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`writing-standard-skills` is the collection name, not a skill name.** What lands in your agent are the 9 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
+**`writing-standard-skills` is the collection name, not a skill name.** What lands in your agent are the 11 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
 
 ---
 
@@ -28,19 +28,21 @@ Writing docs, filing tickets, posting updates, customer service — **when the c
 
 The cost of skipping ④, measured: a 9,918-word technical report, after a read-aloud pass, surfaced 20 problems — **19 only found by reading**. Content drift into adjacent sections, references to deleted chapters, the same document contradicting itself in two places. Linters only catch leftover wording.
 
-## Nine skills and atomic matrix
+## Eleven skills and atomic matrix
 
 The directory name is the trigger name — that is what your agent matches on.
 
 | Skill (trigger name) | Covers | When to use |
 |---|---|---|
 | **[how-to-write](skills/how-to-write/)** | The full method — the four steps above | Before writing anything meant to be read by someone else |
+| **[account-custody](skills/account-custody/)** | Account-custody preflight: platform → existing persona → voice match → IP/region consistency | Before an agent operates a social account on someone's behalf |
 | **[peer-facing-writing](skills/peer-facing-writing/)** | Written peer communication: ticket skeleton, per-sentence substitution table | Issues, review comments, cross-team reports |
 | **[technical-postmortem](skills/technical-postmortem/)** | Blameless technical postmortems: timeline, 5 Whys, physical guardrails, evidence chains | Production incidents, outages, public failure disclosures |
 | **[decision-and-rfc](skills/decision-and-rfc/)** | Architecture Decision Records (ADR) & RFCs: explicit trade-offs, rejected alternatives, termination triggers | Architecture reviews, technical proposals, refactoring |
 | **[executive-briefing](skills/executive-briefing/)** | Low-cost executive reporting: strictly [✅ Shipped] or [⏸ Need Decision], trade-off alignment | Briefing decision-makers, managers, and owners |
 | **[platform-voices](skills/platform-voices/)** | Platform mindsets: Xiaohongshu/X/Reddit/Juejin/NetEase/GitHub/WeChat (with feed post deduction rubrics) | Publishing on specific media with platform-native voices |
 | **[scenario-openers](skills/scenario-openers/)** | Scenario openers & Anti-AI authenticity guide | Customer inquiries, issue handling, hook phrases, killing AI taste |
+| **[personal-companion](skills/personal-companion/)** | Daily chats with close ones: warm plain-text short messages, reminder three-step, health-topic boundaries | Reminders, check-ins and everyday talk with family / partner / close ones |
 | **[talk-text-review](skills/talk-text-review/)** | Talk posture: is this an "I'll teach you" or a "let's talk" piece | Before sharing with peers or seniors |
 | **[talk-visual-review](skills/talk-visual-review/)** | Visual acceptance for the deck | Before producing the final visual |
 
