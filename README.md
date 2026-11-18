@@ -43,7 +43,7 @@
 | **[platform-voices](skills/platform-voices/)** | 全平台表达风格分册：小红书/X/Reddit/掘金/网易云/GitHub/公众号，附说说扣分清单 | 针对特定平台的受众心智发帖与创作时 |
 | **[wechat-article-flow](skills/wechat-article-flow/)** | 公众号图文生产流程：选题拷问 → 文体骨架 → 标题判据 → 正文 → 配图与排版交接 → 合规自查 → 交付门禁 | 公众号从选题到草稿箱的完整流程，需要逐步确认与发布门禁时 |
 | **[scenario-openers](skills/scenario-openers/)** | 场景接待词、破冰与去 AI 味真实表达规范 | 客诉安抚、私信接待、神评开场、彻底消除 AI 论文腔 |
-| **[personal-companion](skills/personal-companion/)** | 亲近之人的日常私聊：口语带温度、纯文本零排版、提醒三段式、健康话题守边界 | 跟家人、伴侣、亲近的人日常说话、发提醒、关心问候时 |
+| **[life-comms](skills/life-comms/)** | 生活类回复统一规范：纯文本零排版、短句口语 3-5 行、提醒三段式、回执、健康守边界、长任务汇报 | 跟家人、伴侣、亲近的人日常说话、发提醒、回执、关心问候时 |
 | **[talk-text-review](skills/talk-text-review/)** | 讲稿姿态验收：这份稿是「我教你们」还是「我跟你们聊」 | 对同级或高手分享之前 |
 | **[talk-visual-review](skills/talk-visual-review/)** | 讲稿视觉验收 | 出片之前 |
 

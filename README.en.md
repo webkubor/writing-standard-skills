@@ -43,7 +43,7 @@ The directory name is the trigger name — that is what your agent matches on.
 | **[platform-voices](skills/platform-voices/)** | Platform mindsets: Xiaohongshu/X/Reddit/Juejin/NetEase/GitHub/WeChat (with feed post deduction rubrics) | Publishing on specific media with platform-native voices |
 | **[wechat-article-flow](skills/wechat-article-flow/)** | WeChat article production flow: topic interrogation → genre skeleton → title criteria → body → illustration/handoff → compliance → delivery gates | Running a WeChat article from topic to draft with step-by-step confirmation and publish gates |
 | **[scenario-openers](skills/scenario-openers/)** | Scenario openers & Anti-AI authenticity guide | Customer inquiries, issue handling, hook phrases, killing AI taste |
-| **[personal-companion](skills/personal-companion/)** | Daily chats with close ones: warm plain-text short messages, reminder three-step, health-topic boundaries | Reminders, check-ins and everyday talk with family / partner / close ones |
+| **[life-comms](skills/life-comms/)** | Life-type replies: plain-text short messages, reminder three-step, receipts, health boundaries, long-task updates | Everyday talk, reminders, receipts and check-ins with family / partner / close ones |
 | **[talk-text-review](skills/talk-text-review/)** | Talk posture: is this an "I'll teach you" or a "let's talk" piece | Before sharing with peers or seniors |
 | **[talk-visual-review](skills/talk-visual-review/)** | Visual acceptance for the deck | Before producing the final visual |
 

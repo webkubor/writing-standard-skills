@@ -33,7 +33,7 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 ├─ 公众号从选题到草稿箱  → wechat-article-flow（流程门禁；风格看 platform-voices，排版数值看 facet）
 ├─ 寻找真实接待词/开场白  → scenario-openers（私信接待/神评开场/极客钩子/去AI味）
 ├─ 对亲近之人的日常私聊/提醒
-│                        → personal-companion（口语短句、纯文本零排版、提醒三段式、健康话题守边界）
+│                        → life-comms（纯文本短句、提醒三段式、回执、健康守边界、长任务汇报）
 ├─ GitLab/GitHub 单据、评审意见、跨团队报告
 │                        → peer-facing-writing
 ├─ 线上故障通报、事故复盘 → technical-postmortem（时间线白描、5 Whys 机制下钻）
