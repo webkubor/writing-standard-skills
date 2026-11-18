@@ -2,6 +2,15 @@
 
 格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)。
 
+## [2.3.0] - 2026-11-18
+
+### 公众号图文流程沉淀为通用 skill
+- **新增 `wechat-article-flow`**：把公众号从选题到草稿箱的可复用流程独立成 skill——输入四问、选题拷问、文体骨架、标题前 15 字与承诺兑现、正文密度、配图确认、排版交接、合规自查、交付清单与发布门禁。只沉淀流程与门禁，账号资料、密钥、内部路径、个人 IP 红线与账号数据一律不进公开仓。
+- **明确边界**：平台语气继续归 `platform-voices`，排版数值继续归 `facet`；新 skill 不重写风格分册，也不写字号/留白/配色。
+- **同步数量口径为 12 个 skill**：`README.md` / `README.en.md` / `llms.txt` / `package.json` / `install.sh`。
+- **更新 `AGENTS.md`** 触发树：新增公众号完整流程分支。
+- **更新 `how-to-write`** 相关 skill 列表：补 `wechat-article-flow` 指针。
+
 ## [2.2.0] - 2026-11-17
 
 ### 🚀 亲近之人私聊场景补齐与数量口径归一

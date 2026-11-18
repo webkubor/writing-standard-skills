@@ -7,13 +7,13 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-11-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-12-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`writing-standard-skills` is the collection name, not a skill name.** What lands in your agent are the 11 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
+**`writing-standard-skills` is the collection name, not a skill name.** What lands in your agent are the 12 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
 
 ---
 
@@ -28,7 +28,7 @@ Writing docs, filing tickets, posting updates, customer service — **when the c
 
 The cost of skipping ④, measured: a 9,918-word technical report, after a read-aloud pass, surfaced 20 problems — **19 only found by reading**. Content drift into adjacent sections, references to deleted chapters, the same document contradicting itself in two places. Linters only catch leftover wording.
 
-## Eleven skills and atomic matrix
+## Twelve skills and atomic matrix
 
 The directory name is the trigger name — that is what your agent matches on.
 
@@ -41,6 +41,7 @@ The directory name is the trigger name — that is what your agent matches on.
 | **[decision-and-rfc](skills/decision-and-rfc/)** | Architecture Decision Records (ADR) & RFCs: explicit trade-offs, rejected alternatives, termination triggers | Architecture reviews, technical proposals, refactoring |
 | **[executive-briefing](skills/executive-briefing/)** | Low-cost executive reporting: strictly [✅ Shipped] or [⏸ Need Decision], trade-off alignment | Briefing decision-makers, managers, and owners |
 | **[platform-voices](skills/platform-voices/)** | Platform mindsets: Xiaohongshu/X/Reddit/Juejin/NetEase/GitHub/WeChat (with feed post deduction rubrics) | Publishing on specific media with platform-native voices |
+| **[wechat-article-flow](skills/wechat-article-flow/)** | WeChat article production flow: topic interrogation → genre skeleton → title criteria → body → illustration/handoff → compliance → delivery gates | Running a WeChat article from topic to draft with step-by-step confirmation and publish gates |
 | **[scenario-openers](skills/scenario-openers/)** | Scenario openers & Anti-AI authenticity guide | Customer inquiries, issue handling, hook phrases, killing AI taste |
 | **[personal-companion](skills/personal-companion/)** | Daily chats with close ones: warm plain-text short messages, reminder three-step, health-topic boundaries | Reminders, check-ins and everyday talk with family / partner / close ones |
 | **[talk-text-review](skills/talk-text-review/)** | Talk posture: is this an "I'll teach you" or a "let's talk" piece | Before sharing with peers or seniors |

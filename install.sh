@@ -29,6 +29,7 @@ SKILLS=(
   "how-to-write"
   "account-custody"
   "platform-voices"
+  "wechat-article-flow"
   "scenario-openers"
   "peer-facing-writing"
   "technical-postmortem"
@@ -78,7 +79,7 @@ if [ -f "${SOURCE_SKILLS_DIR}/atomic-matrix.md" ]; then
 fi
 
 echo -e "\n${CYAN}════════════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}🎉 writing-standard-skills (v2.0.0) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
+echo -e "${GREEN}🎉 writing-standard-skills (v2.3.0) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
 echo -e "   • 包含平台: DSH / Claude Code / Codex / Antigravity GUI"
 echo -e "   • 模式: 软链接直连 (本地源码修改后所有 Agent 即时生效，无需重装)"
 echo -e "${CYAN}════════════════════════════════════════════════════════════════${NC}"
