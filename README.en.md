@@ -7,13 +7,13 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-12-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-18-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`writing-standard-skills` is the collection name, not a skill name.** What lands in your agent are the 12 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
+**`writing-standard-skills` is the collection name, not a skill name.** What lands in your agent are the 18 skills below — the directory name is the trigger name. The last row is a reference doc and is never triggered.
 
 ---
 
@@ -28,7 +28,7 @@ Writing docs, filing tickets, posting updates, customer service — **when the c
 
 The cost of skipping ④, measured: a 9,918-word technical report, after a read-aloud pass, surfaced 20 problems — **19 only found by reading**. Content drift into adjacent sections, references to deleted chapters, the same document contradicting itself in two places. Linters only catch leftover wording.
 
-## Twelve skills and atomic matrix
+## Eighteen skills and atomic matrix
 
 The directory name is the trigger name — that is what your agent matches on.
 
@@ -46,6 +46,12 @@ The directory name is the trigger name — that is what your agent matches on.
 | **[life-comms](skills/life-comms/)** | Life-type replies: plain-text short messages, reminder three-step, receipts, health boundaries, long-task updates | Everyday talk, reminders, receipts and check-ins with family / partner / close ones |
 | **[talk-text-review](skills/talk-text-review/)** | Talk posture: is this an "I'll teach you" or a "let's talk" piece | Before sharing with peers or seniors |
 | **[talk-visual-review](skills/talk-visual-review/)** | Visual acceptance for the deck | Before producing the final visual |
+| **[task-reporting](skills/task-reporting/)** | Task receipts and status reporting: one status line plus deliverables/evidence/open gaps, with stages kept separate | Code, documentation, patrol and long-task delivery receipts; weekly entries |
+| **[notification-writing](skills/notification-writing/)** | Notification and alert writing: four elements, severity, success/failure/blocked templates and delivery fallback | Alerts, reminders, recovery notices and receipts |
+| **[release-notes](skills/release-notes/)** | Release Note and CHANGELOG writing: title, five sections, genre distinction and SemVer pointers | Writing release notes, CHANGELOG entries or upgrade guidance |
+| **[ticket-copy](skills/ticket-copy/)** | Ticket and collaboration copy: issue, MR/PR, dependency ticket, reproduction, acceptance checkboxes and Refs | Filing, reproducing, handing off and reviewing code work |
+| **[ui-copy](skills/ui-copy/)** | Interface copy: buttons, headings, empty states, errors, long text and cards | Writing user-visible product interface text |
+| **[persona-voice](skills/persona-voice/)** | Person, identity boundaries and comment/reply/CTA voice | Public content, comments, direct replies and attribution |
 
 Reference doc (**not a skill, never auto-triggered** — read it when you need it):
 

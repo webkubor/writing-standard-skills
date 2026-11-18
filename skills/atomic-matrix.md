@@ -50,6 +50,19 @@
 - `S8·对上极简汇报与卡单拍板（Executive Briefing）`（仅限✅已完成/⏸拍板项、互斥选项代价对齐、见 executive-briefing）
 - `S9·生活类回复（对亲近之人的日常私聊与提醒，life-comms）`（口语短句带语气词、纯文本零排版、问候-动作-补充三段式、回执、健康话题关心不越界、见 life-comms）
 
+### 📦 产物分册入口（Artifact Skill Entry Points）
+
+五维参数负责决定“怎么说”，具体产物的结构与验收口径交给对应分册，避免在组合矩阵里重复维护细则：
+
+| 产物 | 分册 | 负责什么 |
+|---|---|---|
+| 任务回执、成功/失败/阻塞回执、周报条目 | `task-reporting` | 状态一行与产物、验证、未决三段 |
+| 告警、提醒、恢复通知、未送达补偿 | `notification-writing` | 告警四要素、严重级别与送达边界 |
+| Release Note、CHANGELOG、版本说明 | `release-notes` | 标题、五段结构、体裁区别与 SemVer 指针 |
+| issue、MR/PR、依赖单、复现单 | `ticket-copy` | 可复现步骤、验收 checkbox 与 Refs |
+| 按钮、标题、空态、错误、卡片文案 | `ui-copy` | 用户下一步、可恢复状态与长短文本 |
+| 人称、身份边界、评论/回复/CTA | `persona-voice` | 身份一致性与口吻；平台细则仍看 `platform-voices` |
+
 ### 4. 🎨 口吻调性原子（Tone & Stance）
 - `T1·粗粝真实`：说人话、带轻微自嘲与口癖、允许不完美的口语节奏。
 - `T2·克制留白`：少用形容词、写客观物象与动作、话说七分。

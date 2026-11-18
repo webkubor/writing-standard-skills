@@ -7,13 +7,13 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-12-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-18-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 12 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
+**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 18 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
 
 ---
 
@@ -28,7 +28,7 @@
 
 跳过 ④ 的实测代价：一份 9918 字的技术报告，通读后揪出 20 处问题，**19 处是通读才发现的**——内容错位挂到邻节、引用已删章节、同一份文档两处结论互相打脸。脚本只能扫出词面残留。
 
-## 十二个 skill 与原子矩阵
+## 十八个 skill 与原子矩阵
 
 目录名 = 触发名。装上后你的 Agent 认的是左边这一列。
 
@@ -46,6 +46,12 @@
 | **[life-comms](skills/life-comms/)** | 生活类回复统一规范：纯文本零排版、短句口语 3-5 行、提醒三段式、回执、健康守边界、长任务汇报 | 跟家人、伴侣、亲近的人日常说话、发提醒、回执、关心问候时 |
 | **[talk-text-review](skills/talk-text-review/)** | 讲稿姿态验收：这份稿是「我教你们」还是「我跟你们聊」 | 对同级或高手分享之前 |
 | **[talk-visual-review](skills/talk-visual-review/)** | 讲稿视觉验收 | 出片之前 |
+| **[task-reporting](skills/task-reporting/)** | 任务回执与状态汇报：状态一行 + 产物/证据/未决三段，阶段不混报 | 代码、文档、巡检、长任务交付回执与周报条目 |
+| **[notification-writing](skills/notification-writing/)** | 通知与告警表达：四要素、三档严重级别、成功/失败/阻塞模板、未送达补偿 | 告警、任务提醒、恢复通知与回执 |
+| **[release-notes](skills/release-notes/)** | 发布说明与 CHANGELOG：标题、五段结构、体裁区别、SemVer 指针 | 写 Release Note、CHANGELOG 或版本升级说明 |
+| **[ticket-copy](skills/ticket-copy/)** | 单据与协作记录：issue、MR/PR、依赖单、复现步骤、验收 checkbox、Refs | 提单、复现、交接和代码评审记录 |
+| **[ui-copy](skills/ui-copy/)** | 界面文案：按钮、标题、空态、错误、超长文本、卡片 | 写产品界面的用户可见文字 |
+| **[persona-voice](skills/persona-voice/)** | 人称、身份边界、评论/回复/CTA 口吻 | 公开内容、评论、私信和署名表达 |
 
 参考文档（**不是 skill，不会被自动触发**，需要时手动查阅）：
 

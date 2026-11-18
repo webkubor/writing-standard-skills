@@ -184,6 +184,12 @@ description: 「怎么写文字」的总纲——先按金字塔原理搭骨架�
 - `scenario-openers`：场景接待词、破冰与去 AI 味真实表达规范（消除机器假人味，真人声腔与开场钩子）
 - `atomic-matrix`：[5D 原子表达组合矩阵速查](../atomic-matrix.md)（角色 × 平台 × 场景 × 口吻 × 开场白自由拼装）
 - `peer-facing-writing`：对同事书面沟通的完整版（提单骨架、逐句替换表、边界）
+- `task-reporting`：任务回执、成功/失败/阻塞回执、周报条目与交付证据分段
+- `notification-writing`：告警四要素、严重级别、未送达补偿与接受回执边界
+- `release-notes`：Release Note、CHANGELOG、五段结构与 SemVer 指针
+- `ticket-copy`：issue、MR/PR、依赖单、复现步骤、验收 checkbox 与 Refs
+- `ui-copy`：按钮、标题、空态、错误、超长文本与卡片文案
+- `persona-voice`：人称、身份边界、评论/回复/CTA；平台细则转 `platform-voices`
 - `technical-postmortem`：严肃技术故障复盘与事故通报规范（时间线白描、5 Whys 机制下钻、物理防线与外部证据）
 - `decision-and-rfc`：架构决策记录（ADR）与技术方案（RFC）表达规范（本质矛盾量化、权衡对齐、弃用墓碑、推翻红线）
 - `executive-briefing`：对业务负责人/Owner 极简汇报与卡单拍板规范（仅限【✅已完成】与【⏸拍板项】，选项代价对齐）

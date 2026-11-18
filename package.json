@@ -1,7 +1,7 @@
 {
   "name": "writing-standard-skills",
-  "version": "2.4.0",
-  "description": "面向 AI agent 与人的写作规范技能集：结构、读者、语气与通读自检，含 12 个 skill、表达矩阵与去 AI 味门禁",
+  "version": "2.5.0",
+  "description": "面向 AI agent 与人的写作规范技能集：结构、读者、语气与通读自检，含 18 个 skill、表达矩阵与去 AI 味门禁",
   "type": "module",
   "scripts": {
     "lint": "node scripts/lint-writing.mjs skills/",
