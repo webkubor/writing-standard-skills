@@ -38,6 +38,12 @@ SKILLS=(
   "talk-text-review"
   "talk-visual-review"
   "life-comms"
+  "task-reporting"
+  "notification-writing"
+  "release-notes"
+  "ticket-copy"
+  "ui-copy"
+  "persona-voice"
 )
 
 # 2. 目标 Agent 目录列表 (目标路径, 标识名)
@@ -79,7 +85,7 @@ if [ -f "${SOURCE_SKILLS_DIR}/atomic-matrix.md" ]; then
 fi
 
 echo -e "\n${CYAN}════════════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}🎉 writing-standard-skills (v2.3.0) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
+echo -e "${GREEN}🎉 writing-standard-skills (v2.5.0) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
 echo -e "   • 包含平台: DSH / Claude Code / Codex / Antigravity GUI"
 echo -e "   • 模式: 软链接直连 (本地源码修改后所有 Agent 即时生效，无需重装)"
 echo -e "${CYAN}════════════════════════════════════════════════════════════════${NC}"

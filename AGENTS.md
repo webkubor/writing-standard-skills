@@ -38,13 +38,19 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 │                        → peer-facing-writing
 ├─ 线上故障通报、事故复盘 → technical-postmortem（时间线白描、5 Whys 机制下钻）
 ├─ 架构方案与技术立项论证 → decision-and-rfc（权衡矩阵、墓碑方案、推翻红线）
+├─ 任务回执、状态与周报条目 → task-reporting（状态一行 + 产物/证据/未决三段）
+├─ 告警、通知、成功/失败/阻塞回执 → notification-writing（四要素与送达补偿）
+├─ Release Note、CHANGELOG、版本说明 → release-notes（五段结构与 SemVer）
+├─ issue、MR/PR、依赖单、复现与验收 → ticket-copy（单据骨架、checkbox、Refs）
+├─ 按钮、标题、空态、错误、卡片等界面文字 → ui-copy
+├─ 人称、身份、评论/回复/CTA 口吻 → persona-voice（平台细则见 platform-voices）
 ├─ 给老板、负责人极简汇报 → executive-briefing（仅限✅已完成/⏸拍板项，选项代价对齐）
 ├─ 分享稿、演讲稿、长文   → talk-text-review（先验姿态）
 │                          出片前再跑 talk-visual-review
 └─ 排版/渲染/出 PDF      → 不在本仓，见 BOUNDARY.md，用 facet
 ```
 
-**对上极简与对同侧沟通**：对同侧同事用 `peer-facing-writing`（留余地、给台阶、情境归因）；给负责人/Owner 汇报用 `executive-briefing`（极简结论、不铺过程、选项代价对齐）。两者场域完全解耦。
+**对上极简与对同侧沟通**：对同侧同事用 `peer-facing-writing`（留余地、给台阶、情境归因）；任务回执按 `task-reporting` 写状态一行与三段证据；给负责人/Owner 汇报在 `task-reporting` 格式上叠加 `executive-briefing` 的 `✅/⏸` 与拍板项。两者场域完全解耦。
 
 ## 维护约定
 
@@ -52,7 +58,7 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 2. **案例要带代价数字。** 「通读后揪出 20 处问题，19 处靠通读发现」比「建议通读」有用得多。
 3. **不写排版规范。** 字号、留白、分页阈值属于 facet 的 `docs/design-spec.md`，两处都写必然漂移。
 4. **总纲与分册的关系**：`how-to-write` 是四步骨架，其余是分册展开。改分册里的原则时，检查总纲要不要同步；总纲只收「顺序」和「判据」，不收细则。
-5. **新增 skill 前先答**：它解决的问题在现有四个里有没有位置？没有才新开。
+5. **新增 skill 前先答**：它解决的问题在现有分册里有没有位置？没有才新开。
 
 ## 规则的依据来源
 
