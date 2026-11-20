@@ -83,6 +83,8 @@ npm test
 curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install.sh | bash
 ```
 
+首次用远程命令安装时，脚本会把源码缓存到 `~/.local/share/writing-standard-skills`，各 Agent 的软链接都指向这份本地源码；以后修改这份源码即可生效。
+
 > **提示**：采用软链接直连模式，后续源码无论怎么修改迭代，所有 Agent 均实时生效，无需重复安装。其他 Agent 与配置细节见 [AGENTS.md](AGENTS.md)。
 
 

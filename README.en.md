@@ -83,6 +83,8 @@ Automatically link to **~/.agents/skills** global standard center, **Claude Code
 curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install.sh | bash
 ```
  
+On the first remote install, the script caches the source at `~/.local/share/writing-standard-skills`; every agent symlink points to that checkout, so edits there take effect without reinstalling.
+
 > **Note**: Uses symlinks. Any future modifications to the local source code take effect immediately across all agents without reinstallation. See [AGENTS.md](AGENTS.md) for more agent configurations.
 
 
