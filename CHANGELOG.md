@@ -2,6 +2,12 @@
 
 格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)。
 
+## [Unreleased]
+
+### 缺陷修复
+- 修复 `install.sh` 远程一行安装从任意目录执行时找不到 `skills/` 的问题：首次安装会把源码缓存到 `~/.local/share/writing-standard-skills`。
+- 安装脚本改为从源码自动发现包含 `SKILL.md` 的目录，并从 `package.json` 读取版本号，避免技能清单和安装提示落后于仓库。
+
 ## [2.6.0] - 2026-11-19
 
 > **一句话摘要**：补齐说人话、终稿自包含与长任务持续推进三类官方提示词门禁。

@@ -12,6 +12,8 @@
 curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install.sh | bash
 ```
 
+远程一行安装首次执行时会把源码缓存到 `~/.local/share/writing-standard-skills`，后续软链接指向这份本地源码。
+
 | Agent / 运行时 / GUI | 自动接入路径 | 说明 |
 |---|---|---|
 | **全局标准中心** | `~/.agents/skills/` | 全局基础底座（包含 DSH 统一挂载） |
