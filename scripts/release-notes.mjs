@@ -28,9 +28,10 @@
  */
 
 import { execFileSync, spawnSync } from 'node:child_process';
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, realpathSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { argv, exit, stdout, stderr } from 'node:process';
+import { fileURLToPath } from 'node:url';
 
 // ── 平台识别 ────────────────────────────────────────────────────────────────
 
@@ -418,4 +419,17 @@ function main() {
   exit(1);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) main();
+// 软链接场景下 process.argv[1] 是软链路径、import.meta.url 是真实路径，
+// 直接比较会不相等 —— 脚本被链到 ~/.agents/skills/... 时就会静默不执行。
+// 用 realpath 归一化后再比。
+function isMainModule() {
+  if (!process.argv[1]) return false;
+  try {
+    const invoked = realpathSync(process.argv[1]);
+    const self = realpathSync(fileURLToPath(import.meta.url));
+    return invoked === self;
+  } catch {
+    return import.meta.url === `file://${process.argv[1]}`;
+  }
+}
+if (isMainModule()) main();

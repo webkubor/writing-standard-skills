@@ -26,18 +26,30 @@ description: 开源发版说明生成工具（GitHub/GitLab 通用）：自动�
 
 ## 用法
 
+工具脚本在仓库的 `scripts/release-notes.mjs`。已安装到本机 Agent 时，`scripts/` 目录被链在
+`~/.agents/skills/writing-standard-skills-scripts/`（各 Agent 的 skills 目录同构），从 skill 目录出发用：
+
+```bash
+# 脚本位置（已安装到本机）
+TOOL=~/.agents/skills/writing-standard-skills-scripts/release-notes.mjs
+# 或在 skill 目录内用相对路径
+TOOL=../writing-standard-skills-scripts/release-notes.mjs
+```
+
+在仓库内开发时直接用仓库根的 `scripts/release-notes.mjs`。
+
 ```bash
 # 1. 先识别平台与仓库（工具会打印平台、包名、版本、安装命令）
-node scripts/release-notes.mjs detect
+node "$TOOL" detect
 
 # 2. 生成发布说明（--from 是上一个版本 tag）
-node scripts/release-notes.mjs plan --from v0.27.0 --to v0.28.0
+node "$TOOL" plan --from v0.27.0 --to v0.28.0
 
 # 3. 带 JSON 输出，便于程序化处理
-node scripts/release-notes.mjs plan --from v0.27.0 --to HEAD --json
+node "$TOOL" plan --from v0.27.0 --to HEAD --json
 
 # 4. 直接追加进 CHANGELOG.md
-node scripts/release-notes.mjs plan --from v0.27.0 --to v0.28.0 --write CHANGELOG.md
+node "$TOOL" plan --from v0.27.0 --to v0.28.0 --write CHANGELOG.md
 ```
 
 ### 常用参数
@@ -125,3 +137,6 @@ node scripts/release-notes.mjs plan --from v0.27.0 --to v0.28.0 --write CHANGELO
 
 - `scripts/release-notes.mjs` —— 工具本体，零第三方依赖（只用 Node 内置模块 + git CLI）。
 - `scripts/test-release-notes.mjs` —— 自测（78 项断言，临时 git 仓库做 fixture，零网络）。
+
+两者都在仓库的 `scripts/` 目录；`install.sh` 会把该目录软链到各 Agent 的 skills 目录
+（`writing-standard-skills-scripts`），所以 skill 装到任何机器后脚本都能直接跑。

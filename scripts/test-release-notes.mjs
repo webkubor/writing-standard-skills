@@ -153,8 +153,8 @@ ok('同组 scope 只标一次', (multi.match(/（switcher）/g) || []).length ==
 
 // ── 6. 真实 git 仓库 fixture ────────────────────────────────────────────────
 const tmp = mkdtempSync(join(tmpdir(), 'relnotes-'));
+const repo = join(tmp, 'demo');
 try {
-  const repo = join(tmp, 'demo');
   mkdirSync(repo);
   const git = (...args) => execFileSync('git', args, { cwd: repo, encoding: 'utf8' });
   git('init', '-q');
@@ -196,6 +196,18 @@ try {
   ok('plan 正文排除 ci 提交', !j.body.includes('调整流水线'));
   eq('plan 标题格式', j.title.startsWith('v1.4.0 — '), true);
   ok('plan 提交清单标注 bucket', j.commits.find((c) => c.subject.includes('流水线')).bucket === 'internal');
+
+// ── 7. 软链接调用（脚本被链到 ~/.agents/skills/... 时的静默不执行 bug）──
+{
+  const link = join(tmp, 'relnotes-link.mjs');
+  const { symlinkSync } = await import('node:fs');
+  const selfPath = fileURLToPath(new URL('./release-notes.mjs', import.meta.url));
+  symlinkSync(selfPath, link);
+  const r = spawnSync(process.execPath, [link, 'detect'], { cwd: repo, encoding: 'utf8' });
+  ok('软链接调用有输出', r.stdout.trim().length > 0, `stdout=${JSON.stringify(r.stdout.slice(0, 80))}`);
+  ok('软链接调用退出码 0', r.status === 0);
+}
+
 } finally {
   rmSync(tmp, { recursive: true, force: true });
 }

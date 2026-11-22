@@ -105,6 +105,15 @@ for entry in "${TARGET_AGENTS[@]}"; do
     fi
   done
   echo -e "${GREEN}   ✅ 成功接入 ${installed_count} 个 skills 至 ${target_dir}${NC}"
+
+  # 4.1 把仓库的 scripts/ 目录一并链过去 —— 带工具脚本的 skill（如
+  # release-notes-tool）需要能定位到 scripts/release-notes.mjs，
+  # 而 skill 目录是整目录软链接，脚本在仓库根 scripts/ 时跨目录找不到。
+  # 链成 <target_dir>/writing-standard-skills-scripts，
+  # SKILL.md 里用相对路径 ../writing-standard-skills-scripts/release-notes.mjs 定位。
+  if [ -d "${SCRIPT_DIR}/scripts" ]; then
+    ln -sfn "${SCRIPT_DIR}/scripts" "${target_dir}/writing-standard-skills-scripts"
+  fi
 done
 
 # 4. 同步原子矩阵速查文件至 ~/.agents/
