@@ -101,18 +101,53 @@ node "$TOOL" plan --from v0.27.0 --to v0.28.0 --write CHANGELOG.md
 | `feat` / `feature` | 新增特性 |
 | `fix` / `bugfix` / `hotfix` / `revert` / `security` | 缺陷修复 |
 | `perf` | 体验与性能优化 |
-| 含 `!` 或 `BREAKING CHANGE` | 破坏性变更与迁移 |
-| `test` / `ci` / `chore` / `docs` / `style` / `refactor` / `build` / `deps` | **不进正文** |
+| 含 `!` 或 body 有 `BREAKING CHANGE:` footer | 破坏性变更与迁移 |
+| `test` / `ci` / `chore` / `docs` / `style` / `refactor` | **不进正文** |
 
-额外的流程性排除（类型是 feat/fix 但内容是流程本身）：
+`deps` / `build` **要进正文** —— 依赖升级与运行时要求变化是用户能感知的
+（升级要求变了），整条排除会让读者以为没变化。
 
-- scope 属于 `release` / `test` / `ci` / `docs` / `chore` / `deps` / `publish` 等；
-- 主题是裸版本号标题（`v0.28.0 — …`，release-please 自己写的版本说明提交）；
-- 主题以 `prepare … release` / `bump version` / `release <版本>` 开头。
+### 流程性提交排除
 
-`feat(release): v0.28.0 — 15 套配色全量可选…` 这类提交**不进正文，但它的标题是最好的一句话摘要来源**——工具会优先取它。
+scope 属于 `release` / `test` / `ci` / `docs` / `chore` / `workflow` / `bot` 的提交不进正文；
+标题是裸版本号形态（`v1.2.3 — …`）或以 `prepare … release` / `bump version` / `release v1.2.3` 开头的也不进。
 
-同 scope 的多条提交归为一条，**标题全部保留**（只标一次 scope），不覆盖。
+⚠️ 不能用裸 `^release` 前缀去砍：`feat: release notes 面板上线` 的 subject 是
+「release notes 面板上线」，会被误杀成流程性提交。
+
+### 版本说明提交的特殊处理
+
+`feat(release): v0.28.0 — 15 套配色全量可选…` 这类提交：
+
+- **不进**正文的特性/修复段（会造成「这个版本自己又发布了一次」）；
+- 但它的 **body 里常有手工写的版本条目**（每条带 `fixes #号`），那是本该给读者看的内容，
+  工具把它们收进「本版要点」段 —— 这是版本核心价值所在，丢了正文就空了；
+- 只认**版本说明提交**的 body。普通 `fix`/`feat` 的 body 里也有 bullet，
+  那是给开发者看的实现说明，混进正文会污染内容。
+
+## 版本号真源
+
+优先级：`--version` > `--to` 的 tag > `package.json`。
+
+只读 `package.json` 会写错版本 —— 真实仓库里它已经 bump 到下一个版本，
+用它给上一区间生成说明会把 CHANGELOG 标成错的版本号。
+
+## CHANGELOG 写入
+
+`--write` 把新版本小节插到**最上面**（CHANGELOG 惯例是新版本在最前），
+不是追加到末尾。
+
+## 发布媒体校验
+
+开源发布要求：**每版 GitHub / GitLab Release 正文公开时即须包含本版图片或可播放视频**。
+`media` 子命令只做校验与提醒，不生成媒体：
+
+```bash
+node "$TOOL" media --version 0.28.0
+```
+
+会列出找到的媒体、标出哪些是本版、给出可直接粘贴的 Markdown 片段；
+找不到本版媒体时退出码非 0 —— 发版前必须补上，否则会产生「无图窗口」。
 
 ## 自检清单
 
@@ -136,7 +171,14 @@ node "$TOOL" plan --from v0.27.0 --to v0.28.0 --write CHANGELOG.md
 ## 配套
 
 - `scripts/release-notes.mjs` —— 工具本体，零第三方依赖（只用 Node 内置模块 + git CLI）。
-- `scripts/test-release-notes.mjs` —— 自测（78 项断言，临时 git 仓库做 fixture，零网络）。
+- `scripts/test-release-notes.mjs` —— 自测（115 项断言，临时 git 仓库做 fixture，零网络），CI 会跑。
 
 两者都在仓库的 `scripts/` 目录；`install.sh` 会把该目录软链到各 Agent 的 skills 目录
 （`writing-standard-skills-scripts`），所以 skill 装到任何机器后脚本都能直接跑。
+
+## 与 release-notes skill 的分工
+
+- `release-notes`（判据）：什么该写、五段结构、SemVer 方向、体裁边界。
+- 本工具（执行）：把提交历史跑成正文。
+
+先按 `release-notes` 的判据确认内容，再用本工具产出，最后按 `release-notes` 的自检清单复核。

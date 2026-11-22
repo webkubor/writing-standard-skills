@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "lint": "node scripts/lint-writing.mjs skills/",
-    "test": "node scripts/lint-writing.mjs skills/"
+    "test": "node scripts/lint-writing.mjs skills/ && node scripts/test-release-notes.mjs",
+    "test:tool": "node scripts/test-release-notes.mjs"
   },
   "keywords": [
     "writing-skills",

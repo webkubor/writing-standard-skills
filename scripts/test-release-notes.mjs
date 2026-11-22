@@ -19,6 +19,8 @@ import { fileURLToPath } from 'node:url';
 import {
   detectPlatform, parseRemote, parseCommit, classify, isUserVisible, isProcessCommit,
   buildBody, buildTitle, guessSummary, detect, SECTIONS,
+  hasBreakingFooter, extractReleaseNotes, resolveVersion, normalizeVersion,
+  insertChangelog, detectInstall, isVersionNoteCommit,
 } from './release-notes.mjs';
 
 let pass = 0, fail = 0;
@@ -208,8 +210,103 @@ try {
   ok('软链接调用退出码 0', r.status === 0);
 }
 
+// JSON bucket 与正文同源
+{
+  const j = JSON.parse(spawnSync(process.execPath, [fileURLToPath(new URL('./release-notes.mjs', import.meta.url)),
+    'plan', '--from', 'v1.3.0', '--to', 'HEAD', '--json'], { cwd: repo, encoding: 'utf8' }).stdout);
+  const ci = j.commits.find((c) => c.subject.includes('调整流水线'));
+  ok('JSON 中流程性提交标 internal', ci && ci.bucket === 'internal');
+  ok('JSON 中可见性字段与 bucket 一致', j.commits.every((c) => (c.bucket === 'internal') === (c.visible === false)));
+}
+
+// 不存在的 tag 要给出可读错误（而不是裸 git 报错）
+{
+  const r = spawnSync(process.execPath, [fileURLToPath(new URL('./release-notes.mjs', import.meta.url)),
+    'plan', '--from', 'v9.9.9', '--to', 'HEAD', '--json'], { cwd: repo, encoding: 'utf8' });
+  ok('不存在的 tag 退出码非 0', r.status !== 0);
+  ok('错误信息提到 tag/ref', /v9\.9\.9|unknown revision|未知|不存在/.test((r.stderr || '') + (r.stdout || '')),
+    `stderr=${(r.stderr || '').slice(0, 120)}`);
+}
+
 } finally {
   rmSync(tmp, { recursive: true, force: true });
+}
+
+// ── 8. 验收回归断言（独立验收指出的缺陷）───────────────────────────────
+
+// 阻断 1：BREAKING CHANGE footer 必须被识别
+const footerCommit = parseCommit('a1b2c3d feat(api): 改写导出接口');
+footerCommit.body = 'BREAKING CHANGE: export() 改名为 exportAll()，请同步修改调用点。';
+ok('BREAKING CHANGE footer 判为破坏性', hasBreakingFooter(footerCommit.body));
+ok('BREAKING-CHANGE 连字符也识别', hasBreakingFooter('BREAKING-CHANGE: x'));
+ok('普通 body 不误判', !hasBreakingFooter('Co-authored-by: someone'));
+{
+  const c = parseCommit('a1b2c3d feat(api): 改写导出接口');
+  c.body = 'BREAKING CHANGE: 改名';
+  eq('带 footer 的提交归入 breaking', classify(c), 'breaking');
+  const bodyBc = buildBody([c], { version: '1.0.0', date: '2026-01-01', summary: 's' });
+  ok('footer 破坏性进破坏性段', bodyBc.includes('改写导出接口') && !bodyBc.includes('无破坏性变更'));
+}
+
+// 阻断 2：^release 前缀不得误杀无 scope 的普通特性
+ok('feat: release notes 不被误杀', isUserVisible(parseCommit('a feat: release notes 面板上线')));
+ok('feat: 发布流程支持多渠道 不被误杀', isUserVisible(parseCommit('a feat: 发布流程支持多渠道')));
+ok('feat(release): 仍被排除', !isUserVisible(parseCommit('a feat(release): v0.28.0 — 说明')));
+ok('release v1.2.3 被排除', !isUserVisible(parseCommit('a chore: release v1.2.3')));
+ok('release: xxx 被排除', !isUserVisible(parseCommit('a chore: release: xxx')));
+
+// 阻断 3：deps/build 类不得整条排除（依赖升级是用户可感知的变化）
+ok('feat(deps) 不被排除', isUserVisible(parseCommit('a feat(deps): 升级到 node 22')));
+ok('feat(build) 不被排除', isUserVisible(parseCommit('a feat(build): 支持 node 22')));
+{
+  const bodyDeps = buildBody([parseCommit('a feat(deps): 升级到 node 22')], { version: '1.0.0', date: '2026-01-01', summary: 's' });
+  ok('依赖升级进正文', bodyDeps.includes('升级到 node 22'));
+}
+
+// 重要 1：版本真源优先级 —— --to tag > package.json
+eq('版本取 --to tag', resolveVersion({ to: 'v0.28.0', pkg: { version: '0.29.0' } }), '0.28.0');
+eq('--version 优先于 --to', resolveVersion({ version: '1.2.3', to: 'v0.28.0', pkg: { version: '0.29.0' } }), '1.2.3');
+eq('无 tag 时回落 package.json', resolveVersion({ to: 'HEAD', pkg: { version: '0.29.0' } }), '0.29.0');
+eq('版本归一化剥 v', normalizeVersion('v1.2.3'), '1.2.3');
+eq('标题不出现 vv', buildTitle('v0.28.0', 'x'), 'v0.28.0 — x');
+{
+  const bodyV = buildBody([], { version: 'v0.28.0', date: '2026-01-01', summary: 's' });
+  ok('正文版本不带 v', bodyV.includes('## [0.28.0] -') && !bodyV.includes('[v0.28.0]'));
+}
+
+// 重要 3：CHANGELOG 插入到最前（倒序）
+{
+  const prev = '# Changelog\n\n## [1.0.0] - 2026-01-01\n\n- 旧版内容\n';
+  const out = insertChangelog(prev, '## [1.2.0] - 2026-02-01\n\n- 新版内容');
+  ok('新版本在旧版本之上', out.indexOf('## [1.2.0]') < out.indexOf('## [1.0.0]'));
+  ok('旧内容保留', out.includes('旧版内容') && out.includes('新版内容'));
+}
+
+// 重要 5：安装命令不留字面占位符
+ok('安装命令无 <repo> 占位符', !detectInstall(null, 'github', 'https://github.com/a/b').includes('<repo>'));
+ok('安装命令含真实地址', detectInstall(null, 'github', 'https://github.com/a/b').includes('https://github.com/a/b'));
+ok('有包名时用 npm', detectInstall({ name: 'pkg-x' }, 'gitlab', null).includes('npm install -g pkg-x@latest'));
+
+// 新增能力：release 提交 body 的条目回填为「本版要点」
+{
+  const rc = parseCommit('a1 feat(release): v0.28.0 — 15 套配色全量可选');
+  rc.body = '- 补齐 15 套莫兰迪配色进菜单，消除底部切字 (fixes #132)\n- 根治空闲样式重算 (fixes #130)';
+  ok('版本说明提交识别', isVersionNoteCommit(rc));
+  const items = extractReleaseNotes(rc);
+  eq('release body 解析出条目数', items.length, 2);
+  ok('条目内容正确', items[0].includes('15 套莫兰迪配色'));
+  const bodyR = buildBody([rc], { version: '0.28.0', date: '2026-01-01', summary: 's' });
+  ok('release 条目进本版要点段', bodyR.includes('### 本版要点') && bodyR.includes('消除底部切字'));
+}
+
+// 普通提交的 body bullet 不得混进「本版要点」
+{
+  const normal = parseCommit('a2 fix(css): 修复括号配对');
+  normal.body = '- `} catch {` 的 catch 与闭合括号同行，必须逐字符定位\n- 往上找到的 try 可能早已闭合';
+  ok('普通提交不算版本说明提交', !isVersionNoteCommit(normal));
+  const bodyN = buildBody([normal], { version: '1.0.0', date: '2026-01-01', summary: 's' });
+  ok('普通提交 body 不进本版要点', !bodyN.includes('### 本版要点'));
+  ok('普通提交 body 不污染正文', !bodyN.includes('catch 与闭合括号同行'));
 }
 
 // ── 汇总 ────────────────────────────────────────────────────────────────────
