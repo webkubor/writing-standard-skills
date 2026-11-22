@@ -21,3 +21,6 @@ jobs:
 
       - name: Run Writing Linter
         run: node scripts/lint-writing.mjs skills/
+
+      - name: Test release-notes tool
+        run: node scripts/test-release-notes.mjs

@@ -43,6 +43,7 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 ├─ 任务回执、状态与周报条目 → task-reporting（状态一行 + 产物/证据/未决三段）
 ├─ 告警、通知、成功/失败/阻塞回执 → notification-writing（四要素与送达补偿）
 ├─ Release Note、CHANGELOG、版本说明 → release-notes（五段结构与 SemVer）
+│                          仓库发版要现成正文 → release-notes-tool（识别 GitHub/GitLab，跑脚本生成）
 ├─ issue、MR/PR、依赖单、复现与验收 → ticket-copy（单据骨架、checkbox、Refs）
 ├─ 按钮、标题、空态、错误、卡片等界面文字 → ui-copy
 ├─ 人称、身份、评论/回复/CTA 口吻 → persona-voice（平台细则见 platform-voices）

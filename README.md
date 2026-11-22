@@ -7,13 +7,13 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-18-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-19-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
 </p>
 
-**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 18 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
+**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 19 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
 
 ---
 
@@ -28,7 +28,7 @@
 
 跳过 ④ 的实测代价：一份 9918 字的技术报告，通读后揪出 20 处问题，**19 处是通读才发现的**——内容错位挂到邻节、引用已删章节、同一份文档两处结论互相打脸。脚本只能扫出词面残留。
 
-## 十八个 skill 与原子矩阵
+## 十九个 skill 与原子矩阵
 
 目录名 = 触发名。装上后你的 Agent 认的是左边这一列。
 
@@ -49,6 +49,7 @@
 | **[task-reporting](skills/task-reporting/)** | 任务回执与状态汇报：状态一行 + 产物/证据/未决三段，阶段不混报 | 代码、文档、巡检、长任务交付回执与周报条目 |
 | **[notification-writing](skills/notification-writing/)** | 通知与告警表达：四要素、三档严重级别、成功/失败/阻塞模板、未送达补偿 | 告警、任务提醒、恢复通知与回执 |
 | **[release-notes](skills/release-notes/)** | 发布说明与 CHANGELOG：标题、五段结构、体裁区别、SemVer 指针 | 写 Release Note、CHANGELOG 或版本升级说明 |
+| **[release-notes-tool](skills/release-notes-tool/)** | 开源发版说明生成工具：识别 GitHub/GitLab，把提交历史转成中文五段式发布说明，剔除过程性提交 | 仓库发版、要写 Release 正文或更新 CHANGELOG |
 | **[ticket-copy](skills/ticket-copy/)** | 单据与协作记录：issue、MR/PR、依赖单、复现步骤、验收 checkbox、Refs | 提单、复现、交接和代码评审记录 |
 | **[ui-copy](skills/ui-copy/)** | 界面文案：按钮、标题、空态、错误、超长文本、卡片 | 写产品界面的用户可见文字 |
 | **[persona-voice](skills/persona-voice/)** | 人称、身份边界、评论/回复/CTA 口吻 | 公开内容、评论、私信和署名表达 |
