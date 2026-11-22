@@ -21,6 +21,7 @@ import {
   buildBody, buildTitle, guessSummary, detect, SECTIONS,
   hasBreakingFooter, extractReleaseNotes, resolveVersion, normalizeVersion,
   insertChangelog, detectInstall, isVersionNoteCommit,
+  mediaMatchesVersion, checkMedia,
 } from './release-notes.mjs';
 
 let pass = 0, fail = 0;
@@ -226,6 +227,88 @@ try {
   ok('不存在的 tag 退出码非 0', r.status !== 0);
   ok('错误信息提到 tag/ref', /v9\.9\.9|unknown revision|未知|不存在/.test((r.stderr || '') + (r.stdout || '')),
     `stderr=${(r.stderr || '').slice(0, 120)}`);
+}
+
+// ── 9. 复审第二轮回归（新增功能带出的缺陷）─────────────────────────────
+
+// 重要 1：版本说明提交判据 —— scope 与版本形态必须同时命中
+{
+  // 有 scope 但不是 release 的版本形态提交 → 不是版本说明提交
+  const scoped = parseCommit('a1 fix(ui): v1.2.3 — 按钮错位');
+  ok('scope=ui 的版本形态提交不算版本说明提交', !isVersionNoteCommit(scoped));
+  const bodyS = buildBody([scoped], { version: '1.0.0', date: '2026-01-01', summary: 's' });
+  ok('scope=ui 的 body 不进本版要点', !bodyS.includes('### 本版要点'));
+
+  const docScope = parseCommit('a2 docs: v1.2.3 — 更新文档');
+  docScope.body = '- 文档改动明细';
+  ok('scope=docs 的版本形态提交不算版本说明提交', !isVersionNoteCommit(docScope));
+
+  const choreScope = parseCommit('a3 chore: 1.0.1 — 更新锁文件');
+  choreScope.body = '- 依赖升级明细';
+  ok('scope=chore 的版本形态提交不算版本说明提交', !isVersionNoteCommit(choreScope));
+
+  // release scope + 版本形态 → 是版本说明提交
+  const real = parseCommit('a4 feat(release): v1.2.3 — 15 套配色全量可选');
+  ok('scope=release 的版本形态提交算版本说明提交', isVersionNoteCommit(real));
+
+  // 无 scope + 版本形态：type 必须本身是 release/feat 类
+  const noScopeFeat = parseCommit('a5 feat: v1.2.3 — 15 套配色全量可选');
+  ok('无 scope 的 feat 版本形态提交算版本说明提交', isVersionNoteCommit(noScopeFeat));
+  const noScopeOther = parseCommit('a6 v1.2.3 — 随手写的一条');
+  ok('无 scope 且 type 非 release 类的不算版本说明提交', !isVersionNoteCommit(noScopeOther));
+}
+
+// 重要 1 附带：摘要不能取自普通提交的版本形态标题
+{
+  const normalFix = parseCommit('b1 fix(ui): v1.2.3 — 按钮错位');
+  ok('摘要不取自 scope=ui 的版本形态提交',
+    guessSummary([normalFix]) !== '按钮错位');
+  const realNote = parseCommit('b2 feat(release): v1.2.3 — 真正的核心价值');
+  eq('摘要取自版本说明提交', guessSummary([realNote]), '真正的核心价值');
+}
+
+// 重要 2：media 本版判定必须真的看到版本号
+{
+  eq('媒体路径含裸版本号', mediaMatchesVersion('assets/showcase/0.28.0.png', '0.28.0'), true);
+  eq('媒体路径含 v 前缀版本号', mediaMatchesVersion('assets/showcase/v0.28.0.png', 'v0.28.0'), true);
+  eq('媒体路径不含版本号 → 非本版', mediaMatchesVersion('docs/media/old.png', '9.9.9'), false);
+  eq('空版本号不匹配', mediaMatchesVersion('assets/x.png', ''), false);
+}
+
+// 重要 2：media 片段只含本版媒体
+{
+  const medDir = join(tmp, 'media-repo');
+  mkdirSync(medDir);
+  const mg = (...args) => execFileSync('git', args, { cwd: medDir, encoding: 'utf8' });
+  mg('init', '-q');
+  mg('config', 'user.email', 't@t.io');
+  mg('config', 'user.name', 't');
+  mg('remote', 'add', 'origin', 'git@github.com:a/media2.git');
+  writeFileSync(join(medDir, 'package.json'), JSON.stringify({ name: 'media2', version: '1.0.0' }));
+  mkdirSync(join(medDir, 'docs', 'media'), { recursive: true });
+  writeFileSync(join(medDir, 'docs', 'media', 'old-screenshot.png'), Buffer.alloc(3000, 1));
+  writeFileSync(join(medDir, 'docs', 'media', 'v2.0.0-shot.png'), Buffer.alloc(3000, 2));
+  execFileSync('git', ['add', '.'], { cwd: medDir });
+  mg('commit', '-qm', 'chore: init');
+
+  const m2 = checkMedia(medDir, { version: '9.9.9' });
+  ok('不存在的版本判为无本版媒体', m2.ok === false);
+  eq('不存在的版本本版计数为 0', m2.counts.current, 0);
+  ok('片段不含非本版媒体', !m2.markdown.some((s) => s.includes('old-screenshot')));
+  ok('历史媒体单独列出', m2.historical.some((p) => p.includes('old-screenshot')));
+
+  const m3 = checkMedia(medDir, { version: '2.0.0' });
+  ok('存在的版本判为有本版媒体', m3.ok === true);
+  ok('片段只含本版媒体', m3.markdown.length === 1 && m3.markdown[0].includes('v2.0.0-shot'));
+}
+
+// 次要 3：--include-internal 时「本版要点」仍保留
+{
+  const rc = parseCommit('c1 feat(release): v0.2.0 — 新版上线');
+  rc.body = '- 核心价值条目';
+  const bodyI = buildBody([rc], { version: '0.2.0', date: '2026-01-01', summary: 's', includeInternal: true });
+  ok('include-internal 时本版要点保留', bodyI.includes('### 本版要点') && bodyI.includes('核心价值条目'));
+  ok('include-internal 时有内部变更段', bodyI.includes('### 内部变更（不面向用户）'));
 }
 
 } finally {

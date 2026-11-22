@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0f766e.svg" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/skills-18-111827.svg" />
+  <img alt="Skills" src="https://img.shields.io/badge/skills-19-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
   <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
@@ -28,7 +28,7 @@ Writing docs, filing tickets, posting updates, customer service — **when the c
 
 The cost of skipping ④, measured: a 9,918-word technical report, after a read-aloud pass, surfaced 20 problems — **19 only found by reading**. Content drift into adjacent sections, references to deleted chapters, the same document contradicting itself in two places. Linters only catch leftover wording.
 
-## Eighteen skills and atomic matrix
+## Nineteen skills and atomic matrix
 
 The directory name is the trigger name — that is what your agent matches on.
 

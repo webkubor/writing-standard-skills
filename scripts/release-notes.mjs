@@ -208,16 +208,30 @@ export function extractReleaseNotes(commit) {
 /**
  * 这条提交是不是 release-please 写的**版本说明提交**。
  *
- * 判据：subject 是「版本号 — 摘要」形态，且带 release 相关 scope，
- * 或者 subject 以版本号开头。两条都满足才算 —— 只看版本号形态会把
- * 恰好以版本号命名的普通提交误判。
+ * 判据（两条都命中才算）：
+ *   1. subject 是「版本号 — 摘要」形态；
+ *   2. scope 属于 release 相关，**或**压根没有 scope（release-please
+ *      有时写成无 scope 的 `v0.28.0 — …`）。
+ *
+ * ⚠️ 不能只看 subject 的版本号形态：普通提交里出现
+ * `fix(ui): v1.2.3 — 按钮错位` 这种写法很常见，它的 body 是给开发者的
+ * 实现说明，混进「本版要点」就是正文污染。
  */
 export function isVersionNoteCommit(commit) {
   const s = commit.subject.trim();
   const scope = (commit.scope || '').toLowerCase();
+  const type = (commit.type || '').toLowerCase();
   const versionShape = /^v?\d+\.\d+\.\d+(\.\d+)?\s*[-—–:：]/.test(s);
   if (!versionShape) return false;
-  return scope === 'release' || scope === 'releases' || scope === 'release-please' || /^v?\d/.test(s);
+  // 有 scope：只有 release 相关 scope 才算
+  if (scope) {
+    return scope === 'release' || scope === 'releases' || scope === 'release-please';
+  }
+  // 无 scope：type 必须本身是 release 类。
+  // ⚠️ `docs: v1.2.3 — …` / `chore: 1.0.1 — …` 这类**没有 scope**
+  // （Conventional Commits 里 docs/chore 写在 type 位置），它们是普通提交，
+  // body 是给开发者的实现说明 —— 不能当版本说明提交。
+  return type === 'release' || type === 'releases' || type === 'release-please' || type === 'feat' || type === 'feature';
 }
 
 /**
@@ -350,7 +364,10 @@ export function buildBody(commits, opts = {}) {
       // 那是给开发者看的实现说明，混进正文会污染内容。
       // --include-internal 时它进「内部变更」段，不重复出现在正文段里。
       const items = isVersionNoteCommit(c) ? extractReleaseNotes(c) : [];
-      if (items.length && !includeInternal) {
+      // 「本版要点」始终保留 —— 那是核心价值，
+      // 即便 --include-internal 打开了也不该消失（它进「内部变更」段只是
+      // 多列一条提交标题，正文要点不能跟着没）
+      if (items.length) {
         buckets.release.push({ kind: 'release', subject: c.subject, hashes: [c.hash], scope: c.scope, subjects: [], items });
       }
       if (includeInternal) {
@@ -467,13 +484,17 @@ export function buildTitle(version, summary) {
  * 从提交里猜一句话摘要。
  *
  * 两个来源：
- *  1. release-please 写的版本说明提交（`feat(release): v0.28.0 — 15 套配色全量可选…`）
+ *  1. release-please 写的**版本说明提交**（`feat(release): v0.28.0 — 15 套配色全量可选…`）
  *     —— 它是**人工写的一句话摘要**，质量最高，优先采用；
  *  2. 真正的 feat/fix 提交主题（跳过流程性提交）。
+ *
+ * ⚠️ 摘要来源必须是版本说明提交。普通提交里出现版本号形态的标题很常见
+ * （`fix(ui): v1.2.3 — 按钮错位`），拿它当摘要会把实现细节当核心价值。
  */
 export function guessSummary(commits) {
   // 来源 1：版本说明提交 —— 标题形如 "v0.28.0 — <摘要>"，取破折号后的部分
   for (const c of commits) {
+    if (!isVersionNoteCommit(c)) continue;
     const m = c.subject.match(/^v?\d+\.\d+\.\d+(?:\.\d+)?\s*[—–\-:：]\s*(.+)$/);
     if (m && m[1].trim()) return m[1].trim();
   }
@@ -523,7 +544,7 @@ export function insertChangelog(prev, body) {
  */
 export function checkMedia(cwd, opts = {}) {
   const dirs = opts.dirs || ['assets/showcase', 'assets', 'docs/media', 'assets/releases'];
-  const version = opts.version || '';
+  const version = normalizeVersion(opts.version || '');
   const found = [];
   const missing = [];
 
@@ -541,8 +562,10 @@ export function checkMedia(cwd, opts = {}) {
       try { size = statSync(fullPath).size; } catch {}
       if (!size) continue;
       const rel = `${d}/${f}`;
-      // 版本目录或文件名带版本号的，优先算作「本版媒体」
-      const isCurrent = version ? (rel.includes(version) || !existsSync(join(cwd, 'assets', 'showcase'))) : true;
+      // 「本版」判据必须**真的在路径里看到目标版本号** ——
+      // 目录不存在时若回退成「全部都算本版」，一个根本不存在的版本
+      // 也会被判为「有媒体」，媒体门禁就形同虚设了。
+      const isCurrent = version ? mediaMatchesVersion(rel, version) : false;
       found.push({ path: rel, size, isCurrent });
     }
   }
@@ -551,9 +574,10 @@ export function checkMedia(cwd, opts = {}) {
   const videos = found.filter((f) => /\.(mp4|webm|mov)$/i.test(f.path));
   const current = found.filter((f) => f.isCurrent);
 
+  // 可粘贴片段**只给本版媒体** —— 非本版的留给人工挑选，不混进来
   const md = [];
-  for (const v of videos) md.push(`<video src="${v.path}" controls width="640"></video>`);
-  for (const i of images) md.push(`![${opts.alt || '版本预览'}](${i.path})`);
+  for (const v of videos.filter((f) => f.isCurrent)) md.push(`<video src="${v.path}" controls width="640"></video>`);
+  for (const i of images.filter((f) => f.isCurrent)) md.push(`![${opts.alt || '版本预览'}](${i.path})`);
 
   return {
     version,
@@ -561,8 +585,20 @@ export function checkMedia(cwd, opts = {}) {
     counts: { total: found.length, images: images.length, videos: videos.length, current: current.length },
     media: found,
     markdown: md,
+    historical: found.filter((f) => !f.isCurrent).map((f) => f.path),
     dirsMissing: missing,
   };
+}
+
+/**
+ * 媒体路径是否属于指定版本。
+ * 认 `v0.28.0` 与 `0.28.0` 两种写法（路径里通常带 v）。
+ */
+export function mediaMatchesVersion(relPath, version) {
+  if (!version) return false;
+  const v = normalizeVersion(version);
+  const p = String(relPath);
+  return p.includes(v) || p.includes(`v${v}`);
 }
 
 // ── CLI ─────────────────────────────────────────────────────────────────────
@@ -586,14 +622,15 @@ function usage() {
 
   detect                                  识别平台、仓库、安装入口
   plan --from <tag> --to <ref>            生成五段结构发布说明
-    --version <v>     版本号（默认读 package.json）
+    --version <v>     版本号（默认取 --to 的 tag，其次 package.json）
     --date <YYYY-MM-DD>
     --summary <一句话核心价值>
     --install <安装命令>
     --platform github|gitlab   手动指定（默认自动识别）
     --include-internal        连过程性提交也进正文（默认不进）
     --json                   输出 JSON
-    --write <file>           追加写入文件（CHANGELOG.md）
+    --write <file>           写入文件（新版本插到最上面）
+  media --version <v>                   校验本版有无图片/视频，给可粘贴片段
 `);
 }
 
@@ -620,8 +657,11 @@ function main() {
       stdout.write(`  图片 ${media.counts.images} 个 / 视频 ${media.counts.videos} 个 / 本版 ${media.counts.current} 个\n`);
       for (const m of media.media) stdout.write(`  - ${m.path}  ${(m.size / 1024).toFixed(0)} KB${m.isCurrent ? '' : '  (非本版)'}\n`);
       if (media.markdown.length) {
-        stdout.write('\n可粘贴片段：\n');
+        stdout.write('\n可粘贴片段（仅本版媒体）：\n');
         for (const s of media.markdown) stdout.write(s + '\n');
+      }
+      if (media.historical.length) {
+        stdout.write(`\n历史媒体（需人工挑选，未进片段）：${media.historical.join(', ')}\n`);
       }
       stdout.write(media.ok ? '\n✅ 有可用的本版媒体\n' : '\n❌ 未找到本版图片或视频 —— 发版前必须补上（Release 正文公开时即须含本版媒体）\n');
     }
