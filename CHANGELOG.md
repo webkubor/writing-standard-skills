@@ -8,6 +8,7 @@
 - 新增 **常驻身份内核** `identity/kernel.md`：语言（中文）、说人话、持续推进（A/B/C 停手）、脾气档案、技能路由五块，单一真源，60 行硬上限。
 - `install.sh` 新增幂等写入：把内核以 `<!-- wss-kernel:begin/end -->` 标记块写进 Claude Code / Codex / Hermes / OpenCode 的常驻配置，块外内容不动，首次写入留 `.bak-wss-kernel` 备份。
 - 新增 `scripts/check-kernel-sync.mjs`（`npm run check:kernel`）：校验四端内核块与真源一致，CI 下缺文件跳过、漂移报错。
+- 内核新增「对话红线」：代码细节与过程不外放、验证证据仍要给、进度节点必须说、能开子 Agent 就开后台保持主会话畅通。
 
 ### 文档同步
 - `README.md` 补「两层结构：常驻身份 + 按需技能」；`AGENTS.md` 补内核维护约定；`llms.txt` 补 `identity/` 导览。
