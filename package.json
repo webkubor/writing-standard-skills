@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "lint": "node scripts/lint-writing.mjs skills/",
-    "test": "node scripts/lint-writing.mjs skills/ && node scripts/test-release-notes.mjs && node scripts/check-kernel-sync.mjs --ci",
+    "test": "node scripts/lint-writing.mjs skills/ && node scripts/test-release-notes.mjs && node scripts/check-kernel-sync.mjs --ci && node scripts/check-version.mjs",
     "test:tool": "node scripts/test-release-notes.mjs",
-    "check:kernel": "node scripts/check-kernel-sync.mjs"
+    "check:kernel": "node scripts/check-kernel-sync.mjs",
+    "check:version": "node scripts/check-version.mjs",
+    "check:version:remote": "node scripts/check-version.mjs --remote"
   },
   "keywords": [
     "writing-skills",

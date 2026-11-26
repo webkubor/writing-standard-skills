@@ -15,6 +15,7 @@
 - README 重写：补 `assets/hero.svg` 三层结构图、场景样例、四端接入说明；链接全部指向真实文件。
 - `install.sh` 安装目标补齐到 CortexOS 认可的九个运行时（增加 Cursor / OpenCode / DSH / Magpie / Hermes），并覆盖 `~/.hermes/profiles/*/skills` 下每个 profile；修复 `cs skill install --list` 显示已装、实际缺 3 个 skill 的漂移。修复后九端实测各 19/19。
 - 新增远程安装器 `install-remote.sh` 与清单 `skills-manifest.json`：服务器无本地源码，安装只走 GitHub 链接 clone 到绝对缓存目录再装，先校验清单齐全。README 补远程一行安装命令。
+- 新增 `scripts/check-version.mjs`（`npm run check:version` / `:remote`）：核对仓版本、清单版本、19 个 skill 的 version 与目录一致性；`--remote` 比较远端清单并给升级提示（网络失败 fail-soft）。`install.sh` 装完自动跑一遍。
 
 ### 文档同步
 - `README.md` 补「两层结构：常驻身份 + 按需技能」；`AGENTS.md` 补内核维护约定；`llms.txt` 补 `identity/` 导览。

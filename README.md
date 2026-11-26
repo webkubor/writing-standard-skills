@@ -98,7 +98,11 @@
 node scripts/lint-writing.mjs skills/   # 本地自检
 npm test                                # lint + release-notes + 内核约束
 npm run check:kernel                    # 校验四端常驻内核没漂移
+npm run check:version                   # 版本自检
+npm run check:version:remote            # 再查 GitHub 清单，落后给升级提示
 ```
+
+版本自检核对三件事：`package.json` 与 `skills-manifest.json` 版本是否一致、19 个 skill 是否都有 `version`、清单与目录是否漂移。带 `--remote` 时比较远端清单，落后就打印升级命令；网络失败只提示、不阻断。每次 `install.sh` 装完也会自动跑一遍。
 
 ## 一键接入全 Agent 与本地 GUI
 

@@ -197,6 +197,11 @@ upsert_kernel "${HOME}/.codex/AGENTS.md" "Codex (~/.codex/AGENTS.md)"
 upsert_kernel "${HOME}/.hermes/SOUL.md" "Hermes (~/.hermes/SOUL.md)"
 upsert_kernel "${HOME}/.config/opencode/AGENTS.md" "OpenCode (~/.config/opencode/AGENTS.md)"
 
+# 5.1 版本自检提示：装完就告诉用户本地版本是否和清单一致、是否落后远端
+if [ -f "${SCRIPT_DIR}/scripts/check-version.mjs" ] && command -v node >/dev/null 2>&1; then
+  node "${SCRIPT_DIR}/scripts/check-version.mjs" || true
+fi
+
 echo -e "\n${CYAN}════════════════════════════════════════════════════════════════${NC}"
 echo -e "${GREEN}🎉 writing-standard-skills (v${PACKAGE_VERSION}) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
 echo -e "   • 包含平台: DSH / Claude Code / Codex / Antigravity GUI"
