@@ -1,0 +1,37 @@
+{
+  "name": "writing-standard-skills",
+  "version": "2.6.0",
+  "repository": "https://github.com/webkubor/writing-standard-skills.git",
+  "ref": "main",
+  "install_url": "https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install-remote.sh",
+  "note": "远程 Agent 的安装清单。服务器无本地源码，必须从 repository 拉取，不能用相对路径。清单本身也随仓发布，改 skill 后版本号要同步。",
+  "skills": [
+    "account-custody",
+    "decision-and-rfc",
+    "executive-briefing",
+    "how-to-write",
+    "life-comms",
+    "notification-writing",
+    "peer-facing-writing",
+    "persona-voice",
+    "platform-voices",
+    "release-notes",
+    "release-notes-tool",
+    "scenario-openers",
+    "talk-text-review",
+    "talk-visual-review",
+    "task-reporting",
+    "technical-postmortem",
+    "ticket-copy",
+    "ui-copy",
+    "wechat-article-flow"
+  ],
+  "identity": [
+    "identity/kernel.md",
+    "identity/dialogue-foundations.md"
+  ],
+  "examples": [
+    "examples/scenarios.md",
+    "assets/hero.svg"
+  ]
+}

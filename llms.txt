@@ -15,6 +15,7 @@
 - `identity/dialogue-foundations.md` — 内核的理论后盾：非暴力沟通 / Grice 四条 / 言语行为理论，按需查阅
 - `examples/scenarios.md` — 14 个场景的成品回复与背后框架标注
 - `assets/hero.svg` — README 三层结构图
+- `install-remote.sh` + `skills-manifest.json` — 服务器/远程 Agent 安装入口，只从 GitHub 链接拉取，清单列 19 个 skill
 - `skills/` — 19 个 skill 本体（按需加载的行为定义）
 - `BOUNDARY.md` — 能力边界（什么算写好、什么不归它管）
 - `scripts/` — lint / test / check-kernel-sync

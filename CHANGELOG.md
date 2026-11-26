@@ -14,6 +14,7 @@
 - 新增 `examples/scenarios.md`：14 个真实场景的成品回复，每条标出背后用的框架；客诉、接梗、反驳等按对话红线与底层框架修正过。
 - README 重写：补 `assets/hero.svg` 三层结构图、场景样例、四端接入说明；链接全部指向真实文件。
 - `install.sh` 安装目标补齐到 CortexOS 认可的九个运行时（增加 Cursor / OpenCode / DSH / Magpie / Hermes），并覆盖 `~/.hermes/profiles/*/skills` 下每个 profile；修复 `cs skill install --list` 显示已装、实际缺 3 个 skill 的漂移。修复后九端实测各 19/19。
+- 新增远程安装器 `install-remote.sh` 与清单 `skills-manifest.json`：服务器无本地源码，安装只走 GitHub 链接 clone 到绝对缓存目录再装，先校验清单齐全。README 补远程一行安装命令。
 
 ### 文档同步
 - `README.md` 补「两层结构：常驻身份 + 按需技能」；`AGENTS.md` 补内核维护约定；`llms.txt` 补 `identity/` 导览。

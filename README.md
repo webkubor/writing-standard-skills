@@ -116,6 +116,16 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 
 > 软链接直连模式：源码改了所有 Agent 实时生效。其他 Agent 与配置细节见 [AGENTS.md](AGENTS.md)。
 
+### 服务器 / 远程 Agent
+
+服务器本机没有这份源码，任何指向本机目录的相对路径都是空的。远程安装器**只从 GitHub 链接拉取**到绝对缓存目录再装，清单真源是 [`skills-manifest.json`](skills-manifest.json)（19 个 skill + 身份文档）：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install-remote.sh | bash
+```
+
+安装器先校验清单里的 skill 齐全，再装到本机全部运行时并写回常驻内核。可用 `WRITING_STANDARD_SKILLS_REPO` / `WRITING_STANDARD_SKILLS_REF` / `WRITING_STANDARD_SKILLS_HOME` 换仓、换版本、换缓存目录。
+
 ## 它不管什么
 
 表达拆成四段，本仓只管第一段，其余各有归属，互不重复定义：
