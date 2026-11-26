@@ -1,8 +1,12 @@
 <h1 align="center">writing-standard-skills</h1>
 
 <p align="center">
+  <img src="assets/hero.svg" alt="内核 → 架构 → 回复：简单背后是不简单" width="900" />
+</p>
+
+<p align="center">
   不止去 AI 味——教 AI 人情世故：哪句话会得罪人、对上汇报和对同事吐槽是两套语法、换个平台要换一副心智。<br/>
-  把话说对的四步：搭骨架 → 定读者 → 调语气 → 当读者读一遍。给 AI agent 和人共用的表达规范。
+  回复是流出来的，不是憋出来的：底下有内核和架构，表面才敢简单。
 </p>
 
 <p align="center">
@@ -10,14 +14,17 @@
   <img alt="Skills" src="https://img.shields.io/badge/skills-19-111827.svg" />
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ready-d97706.svg" />
   <img alt="Codex" src="https://img.shields.io/badge/Codex-ready-111827.svg?logo=openai&logoColor=white" />
-  <img alt="Cursor" src="https://img.shields.io/badge/Cursor-ready-000000.svg" />
+  <img alt="Hermes" src="https://img.shields.io/badge/Hermes-ready-7c3aed.svg" />
+  <img alt="OpenCode" src="https://img.shields.io/badge/OpenCode-ready-0ea5e9.svg" />
 </p>
 
-**`writing-standard-skills` 是集合名，不是 skill 名。** 装进你 Agent 的是下面 19 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
+**`writing-standard-skills` 是集合名，不是 skill 名。** 装进 Agent 的是下面 19 个 skill，目录名即触发名；表里最后一行是参考文档，不会被触发。
 
 ---
 
-写文档、提单、发动态、做客诉接待——**内容对了但没人看完，或者看完了充斥着一股 AI 假人味**，通常不是内容问题，是这四件事没按顺序做，且缺乏细颗粒度的场域与语气拼装：
+## 30 秒看懂
+
+写文档、提单、发动态、做客诉接待——内容对了但没人看完，或者看完了充斥着一股 AI 假人味，通常不是内容问题，是这四件事没按顺序做：
 
 ```
 ① 搭骨架   原词说事 · 结论先行 · SCQA 四句 · MECE 不重不漏
@@ -30,14 +37,25 @@
 
 ## 两层结构：常驻身份 + 按需技能
 
-「说中文、说人话、别老停下来问、有点脾气」不是某一篇 skill 能教出来的——skill 是**用的时候才读**的，而这几件事必须每轮在场。所以本仓分两层：
+「说中文、说人话、别老停下来问、有点脾气」不是某一篇 skill 能教出来的——skill 是**用的时候才读**的，而这几件事必须每轮在场。所以分两层：
 
 | 层 | 内容 | 加载方式 |
 |---|---|---|
-| **常驻内核** [`identity/kernel.md`](identity/kernel.md) | 语言、说人话、持续推进、脾气、技能路由 | 每轮都在；`install.sh` 写进各 Agent 的常驻配置 |
+| **常驻内核** [`identity/kernel.md`](identity/kernel.md) | 语言、说人话、持续推进、脾气、对话红线、技能路由 | 每轮都在；`install.sh` 写进四个 Agent 的常驻配置 |
+| **理论后盾** [`identity/dialogue-foundations.md`](identity/dialogue-foundations.md) | 非暴力沟通、Grice 四条准则、言语行为理论 | 按需查阅，不常驻 |
 | **按需技能** `skills/` | 19 个具体文体的写法与判据 | 写东西前按场景选一个读 |
 
-内核设 60 行硬上限——常驻内容一长，每轮 token 就被吃掉，细则一律留在按需 skill。改内核后重跑 `./install.sh`，四个 Agent 同时生效；`npm run check:kernel` 校验各端没有漂移（标记块由脚本独占，不要在配置里手改）。
+内核设 60 行硬上限——常驻内容一长，每轮 token 就被吃掉；细则留在后盾和 skill 里。改内核后重跑 `./install.sh` 四端同时生效，`npm run check:kernel` 校验漂移（标记块由脚本独占，别手改）。
+
+## 场景长什么样
+
+完整回复库见 [`examples/scenarios.md`](examples/scenarios.md)，每条都标了背后用了哪条框架。三条样例：
+
+> **老板问进度**：做完了，已上线。就一个点等你定：旧入口今天关还是留一周？我倾向关。
+
+> **朋友接梗**：嘎嘎嘎嘎嘎嘎(≧▽≦) 这个我信！我上周也这样，盯着页面看了十分钟才发现是自己缓存没清，纯纯白折腾 (；一_一) 哈哈哈哈
+
+> **客诉承接**：换我我也得骂两句——按文档走还踩坑，白耽误你时间。我复现了，确实是我们的锅。先给你个能直接用的绕法，根因今晚修，修完我第一时间回你。
 
 ## 十九个 skill 与原子矩阵
 
@@ -70,35 +88,33 @@
 | 文档 | 内容 |
 |---|---|
 | **[atomic-matrix.md](skills/atomic-matrix.md)** | [5D 原子表达组合矩阵](skills/atomic-matrix.md)：像拼积木一样拼装 [谁]×[在哪]×[场景]×[口吻]×[接待词] |
+| **[scenarios.md](examples/scenarios.md)** | 场景回复库：14 个真实场景，每条标出背后用的框架 |
 
 ### 自动化去 AI 味门禁（Linter）
 
 自带开箱即用的静态检查脚本 `scripts/lint-writing.mjs`，无第三方依赖，可直接作为 Git pre-commit hook 或接入 CI，机械拦截假人过渡词、机械排比、高中作文腔与空洞正能量结尾：
 
 ```bash
-# 本地自检
-node scripts/lint-writing.mjs skills/
-# 或通过 npm
-npm test
+node scripts/lint-writing.mjs skills/   # 本地自检
+npm test                                # lint + release-notes + 内核约束
+npm run check:kernel                    # 校验四端常驻内核没漂移
 ```
 
+## 一键接入全 Agent 与本地 GUI
 
-## 一键接入全 Agent 与本地 GUI（装上就能用）
-
-通过智能安装脚本，一秒全自动软链接接入 **~/.agents/skills** 全局中心、**Claude Code**、**OpenAI Codex**、**DSH** 以及 **本地 GUI (Antigravity IDE)**：
+智能安装脚本一秒软链接接入 `~/.agents/skills` 全局中心、**Claude Code**、**OpenAI Codex**、**Hermes**、**OpenCode** 以及本地 GUI（Antigravity IDE），并写回常驻身份内核：
 
 ```bash
-# 方式 A：已在本地仓库目录下直接执行
+# 已在本地仓库目录下
 ./install.sh
 
-# 方式 B：远程一行全自动接入
+# 远程一行
 curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/main/install.sh | bash
 ```
 
-首次用远程命令安装时，脚本会把源码缓存到 `~/.local/share/writing-standard-skills`，各 Agent 的软链接都指向这份本地源码；以后修改这份源码即可生效。
+远程安装首次执行会把源码缓存到 `~/.local/share/writing-standard-skills`，各 Agent 的软链接都指向这份本地源码；以后修改源码即时生效，无需重复安装。常驻内核首次写入会在目标文件旁留 `.bak-wss-kernel` 备份。
 
-> **提示**：采用软链接直连模式，后续源码无论怎么修改迭代，所有 Agent 均实时生效，无需重复安装。其他 Agent 与配置细节见 [AGENTS.md](AGENTS.md)。
-
+> 软链接直连模式：源码改了所有 Agent 实时生效。其他 Agent 与配置细节见 [AGENTS.md](AGENTS.md)。
 
 ## 它不管什么
 
@@ -119,6 +135,8 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 - **面子威胁** → 命令式触发防御，对方先保护自尊、后处理信息
 - **逆火效应** → 直接说「你错了」会让人更坚持，尤其在有第三方围观的单据里
 - **自曝降防御** → 同一个坑自己也踩过，先写自己踩过
+
+对话底层另有三套框架撑着（[展开](identity/dialogue-foundations.md)）：非暴力沟通管「先接情绪再办事」，Grice 四条准则管「说多少、清不清楚」，言语行为理论管「这句话落地算什么」。
 
 结构部分用金字塔原理（Barbara Minto）：结论先行、以上统下、归类分组（MECE）、逻辑递进。
 

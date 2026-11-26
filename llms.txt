@@ -13,6 +13,8 @@
 ## 仓库导览（改代码去哪）
 - `identity/kernel.md` — 常驻身份内核（中文 / 说人话 / 持续推进 / 脾气 / 技能路由），单一真源，由 install.sh 写入各 Agent 常驻配置
 - `identity/dialogue-foundations.md` — 内核的理论后盾：非暴力沟通 / Grice 四条 / 言语行为理论，按需查阅
+- `examples/scenarios.md` — 14 个场景的成品回复与背后框架标注
+- `assets/hero.svg` — README 三层结构图
 - `skills/` — 19 个 skill 本体（按需加载的行为定义）
 - `BOUNDARY.md` — 能力边界（什么算写好、什么不归它管）
 - `scripts/` — lint / test / check-kernel-sync

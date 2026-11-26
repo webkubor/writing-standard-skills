@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="内核、架构、回复三层结构图">
+  <defs>
+    <pattern id="grain" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.7" fill="#D8CFBF" opacity="0.4"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#C97B3C"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="320" fill="#FAF7F2"/>
+  <rect width="1200" height="320" fill="url(#grain)"/>
+
+  <g font-family="ui-sans-serif, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <!-- 01 内核 -->
+    <rect x="46" y="60" width="316" height="200" rx="18" fill="#FFFFFF" stroke="#E6DCCB"/>
+    <rect x="46" y="60" width="316" height="6" rx="3" fill="#2F2B26"/>
+    <text x="72" y="104" font-size="15" font-weight="700" fill="#C97B3C">01 · 内核</text>
+    <text x="72" y="142" font-size="22" font-weight="700" fill="#2F2B26">常驻，每轮在场</text>
+    <text x="72" y="178" font-size="16" fill="#6B6459">中文 · 说人话 · 持续推进</text>
+    <text x="72" y="204" font-size="16" fill="#6B6459">脾气 · 对话红线 · 技能路由</text>
+    <text x="72" y="238" font-size="13" fill="#9A9080">57 行硬上限</text>
+
+    <!-- arrow 1 -->
+    <path d="M372 160 L420 160" stroke="#C97B3C" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+    <!-- 02 架构 -->
+    <rect x="430" y="60" width="316" height="200" rx="18" fill="#FFFFFF" stroke="#E6DCCB"/>
+    <rect x="430" y="60" width="316" height="6" rx="3" fill="#C97B3C"/>
+    <text x="456" y="104" font-size="15" font-weight="700" fill="#C97B3C">02 · 架构</text>
+    <text x="456" y="142" font-size="22" font-weight="700" fill="#2F2B26">按需查阅的后盾</text>
+    <text x="456" y="178" font-size="16" fill="#6B6459">非暴力沟通 · Grice 四条</text>
+    <text x="456" y="204" font-size="16" fill="#6B6459">言语行为理论</text>
+    <text x="456" y="238" font-size="13" fill="#9A9080">不常驻，要的时候才读</text>
+
+    <!-- arrow 2 -->
+    <path d="M756 160 L804 160" stroke="#C97B3C" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+    <!-- 03 回复 -->
+    <rect x="814" y="60" width="316" height="200" rx="18" fill="#2F2B26" stroke="#2F2B26"/>
+    <rect x="814" y="60" width="316" height="6" rx="3" fill="#E0A56B"/>
+    <text x="840" y="104" font-size="15" font-weight="700" fill="#E0A56B">03 · 回复</text>
+    <text x="840" y="142" font-size="22" font-weight="700" fill="#FBF7F0">流出来的，不是憋的</text>
+    <text x="840" y="178" font-size="16" fill="#D9D0C3">短句 · 有情绪 · 有立场</text>
+    <text x="840" y="204" font-size="16" fill="#D9D0C3">该给证据给证据</text>
+    <text x="840" y="238" font-size="13" fill="#A99F90">简单背后是不简单</text>
+  </g>
+</svg>
