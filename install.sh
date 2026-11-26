@@ -76,12 +76,27 @@ if [ "${#SKILLS[@]}" -eq 0 ]; then
 fi
 
 # 2. 目标 Agent 目录列表 (目标路径, 标识名)
+# 与 CortexOS 的 registry/skill-runtimes.json 对齐：九个运行时全覆盖。
+# 此前只装四处，导致 CS 里 cursor/opencode/dsh/hermes 缺 skill —— 本仓是技能真源，
+# 必须保证「装一次，所有 Agent 都有」，不能靠每个 Agent 各自补。
 TARGET_AGENTS=(
   "${HOME}/.agents/skills|全局标准中心 (~/.agents/skills)"
   "${HOME}/.claude/skills|Claude Code (~/.claude/skills)"
   "${HOME}/.codex/skills|OpenAI Codex (~/.codex/skills)"
+  "${HOME}/.cursor/skills|Cursor (~/.cursor/skills)"
+  "${HOME}/.config/opencode/skills|OpenCode (~/.config/opencode/skills)"
   "${HOME}/.gemini/config/skills|本地 GUI / Antigravity (~/.gemini/config/skills)"
+  "${HOME}/.dsh/skills|DSH (~/.dsh/skills)"
+  "${HOME}/.config/magpie/library/skills|Magpie (~/.config/magpie/library/skills)"
+  "${HOME}/.hermes/skills|Hermes (~/.hermes/skills)"
 )
+
+# Hermes 每个 profile 就是一个独立 Agent，技能必须跟着走
+for profile_dir in "${HOME}"/.hermes/profiles/*; do
+  if [ -d "${profile_dir}" ]; then
+    TARGET_AGENTS+=("${profile_dir}/skills|Hermes profile ($(basename "${profile_dir}"))")
+  fi
+done
 
 # 确保全局标准目录存在
 mkdir -p "${HOME}/.agents/skills"

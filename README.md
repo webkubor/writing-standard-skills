@@ -102,7 +102,7 @@ npm run check:kernel                    # 校验四端常驻内核没漂移
 
 ## 一键接入全 Agent 与本地 GUI
 
-智能安装脚本一秒软链接接入 `~/.agents/skills` 全局中心、**Claude Code**、**OpenAI Codex**、**Hermes**、**OpenCode** 以及本地 GUI（Antigravity IDE），并写回常驻身份内核：
+智能安装脚本一秒软链接接入 CortexOS 认可的**全部九个运行时**——全局中心、Claude Code、Codex、Cursor、OpenCode、Gemini/Antigravity、DSH、Magpie、Hermes（含每个 profile），并写回常驻身份内核：
 
 ```bash
 # 已在本地仓库目录下

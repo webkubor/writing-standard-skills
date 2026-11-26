@@ -14,13 +14,9 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 
 远程一行安装首次执行时会把源码缓存到 `~/.local/share/writing-standard-skills`，后续软链接指向这份本地源码。
 
-| Agent / 运行时 / GUI | 自动接入路径 | 说明 |
-|---|---|---|
-| **全局标准中心** | `~/.agents/skills/` | 全局基础底座（包含 DSH 统一挂载） |
-| **Claude Code** | `~/.claude/skills/` | 软链接直连，修改实时生效 |
-| **OpenAI Codex** | `~/.codex/skills/` | 软链接直连，修改实时生效 |
-| **本地 GUI (Antigravity IDE)** | `~/.gemini/config/skills/` | 软链接直连，GUI 侧栏即刻读取 |
-| **Cursor** | `.cursor/rules/` | 内容复制进 rules（Cursor 暂不读全局目录） |
+安装目标以 CortexOS `registry/skill-runtimes.json` 为准，共九个运行时：`~/.agents/skills`、`~/.claude/skills`、`~/.codex/skills`、`~/.cursor/skills`、`~/.config/opencode/skills`、`~/.gemini/config/skills`、`~/.dsh/skills`、`~/.config/magpie/library/skills`、`~/.hermes/skills`，另含 `~/.hermes/profiles/*/skills` 下每个 profile。全部软链接直连，改源码实时生效。
+
+常驻内核另外写进四个 Agent 的常驻配置：Claude Code `~/.claude/CLAUDE.md`、Codex `~/.codex/AGENTS.md`、Hermes `~/.hermes/SOUL.md`、OpenCode `~/.config/opencode/AGENTS.md`。
 
 
 ## 常驻内核（identity/kernel.md）
