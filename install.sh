@@ -121,6 +121,11 @@ if [ -f "${SOURCE_SKILLS_DIR}/atomic-matrix.md" ]; then
   ln -sfn "${SOURCE_SKILLS_DIR}/atomic-matrix.md" "${HOME}/.agents/skills/writing-standard-skills-atomic-matrix.md"
   echo -e "${GREEN}   ✅ 5D 原子表达组合矩阵已挂载至 ~/.agents/skills/writing-standard-skills-atomic-matrix.md${NC}"
 fi
+# 内核的理论后盾，按需查阅，不常驻
+if [ -f "${SCRIPT_DIR}/identity/dialogue-foundations.md" ]; then
+  ln -sfn "${SCRIPT_DIR}/identity/dialogue-foundations.md" "${HOME}/.agents/skills/writing-standard-skills-dialogue-foundations.md"
+  echo -e "${GREEN}   ✅ 对话底层框架已挂载至 ~/.agents/skills/writing-standard-skills-dialogue-foundations.md${NC}"
+fi
 
 # 5. 常驻身份内核：写进各 Agent 的常驻配置文件（标记块幂等替换）
 # 技能是按需加载的，但「说中文 / 说人话 / 持续推进 / 脾气」必须每轮在场。

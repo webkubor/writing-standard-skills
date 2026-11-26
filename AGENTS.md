@@ -31,6 +31,7 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 - 改内核 → 改 `identity/kernel.md`，**不要手改各 Agent 配置里的标记块**。
 - 改完跑 `./install.sh` 写回四端（Claude / Codex / Hermes / OpenCode），再跑 `npm run check:kernel` 核对。
 - `install.sh` 首次写入会在目标文件旁留 `.bak-wss-kernel`，块外内容一概不动。
+- 内核只留压缩操作口；理论出处在 `identity/dialogue-foundations.md`（非暴力沟通 / Grice 四条 / 言语行为理论），按需读，不常驻。
 
 ## 什么时候该触发哪个
 

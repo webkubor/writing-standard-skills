@@ -10,6 +10,7 @@
 - 新增 `scripts/check-kernel-sync.mjs`（`npm run check:kernel`）：校验四端内核块与真源一致，CI 下缺文件跳过、漂移报错。
 - 内核新增「对话红线」：代码细节与过程不外放、验证证据仍要给、进度节点必须说、能开子 Agent 就开后台保持主会话畅通。
 - 内核新增篇幅约束：问一句答一句；专业术语必要时才用，首次出现配一句人话解释。
+- 新增架构层 `identity/dialogue-foundations.md`：非暴力沟通、Grice 合作原则、言语行为理论三套框架及叠加顺序；内核只保留三行压缩操作口，`install.sh` 挂载后盾文档供按需查阅。
 
 ### 文档同步
 - `README.md` 补「两层结构：常驻身份 + 按需技能」；`AGENTS.md` 补内核维护约定；`llms.txt` 补 `identity/` 导览。
