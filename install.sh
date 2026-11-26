@@ -122,6 +122,61 @@ if [ -f "${SOURCE_SKILLS_DIR}/atomic-matrix.md" ]; then
   echo -e "${GREEN}   ✅ 5D 原子表达组合矩阵已挂载至 ~/.agents/skills/writing-standard-skills-atomic-matrix.md${NC}"
 fi
 
+# 5. 常驻身份内核：写进各 Agent 的常驻配置文件（标记块幂等替换）
+# 技能是按需加载的，但「说中文 / 说人话 / 持续推进 / 脾气」必须每轮在场。
+# 单一真源在 identity/kernel.md；这里只做标记块替换，块外内容一概不动。
+KERNEL_SOURCE="${SCRIPT_DIR}/identity/kernel.md"
+KERNEL_BEGIN='<!-- wss-kernel:begin -->'
+KERNEL_END='<!-- wss-kernel:end -->'
+
+upsert_kernel() {
+  local target="$1" label="$2"
+  if [ ! -f "${KERNEL_SOURCE}" ]; then
+    echo "   ⚠️ 未找到 ${KERNEL_SOURCE}，跳过 ${label}" >&2
+    return 0
+  fi
+  mkdir -p "$(dirname "${target}")"
+  if [ ! -f "${target}" ]; then
+    : > "${target}"
+  fi
+
+  local has_block=0
+  if grep -qF "${KERNEL_BEGIN}" "${target}" && grep -qF "${KERNEL_END}" "${target}"; then
+    has_block=1
+  fi
+
+  if [ "${has_block}" -eq 0 ] && [ ! -f "${target}.bak-wss-kernel" ]; then
+    cp "${target}" "${target}.bak-wss-kernel"
+  fi
+
+  local tmp
+  tmp="$(mktemp)"
+  if [ "${has_block}" -eq 1 ]; then
+    awk -v begin="${KERNEL_BEGIN}" -v end="${KERNEL_END}" -v kernel="${KERNEL_SOURCE}" '
+      $0 == begin { print; while ((getline line < kernel) > 0) print line; close(kernel); skipping=1; next }
+      $0 == end { print; skipping=0; next }
+      !skipping { print }
+    ' "${target}" > "${tmp}"
+  else
+    {
+      printf '%s\n' "${KERNEL_BEGIN}"
+      cat "${KERNEL_SOURCE}"
+      printf '%s\n' "${KERNEL_END}"
+      printf '\n'
+      cat "${target}"
+    } > "${tmp}"
+  fi
+  cp "${tmp}" "${target}"
+  rm -f "${tmp}"
+  echo -e "${GREEN}   ✅ 常驻身份内核已写入 ${label}${NC}"
+}
+
+echo -e "\n${BLUE}🧠 写入常驻身份内核（单一真源 identity/kernel.md）...${NC}"
+upsert_kernel "${HOME}/.claude/CLAUDE.md" "Claude Code (~/.claude/CLAUDE.md)"
+upsert_kernel "${HOME}/.codex/AGENTS.md" "Codex (~/.codex/AGENTS.md)"
+upsert_kernel "${HOME}/.hermes/SOUL.md" "Hermes (~/.hermes/SOUL.md)"
+upsert_kernel "${HOME}/.config/opencode/AGENTS.md" "OpenCode (~/.config/opencode/AGENTS.md)"
+
 echo -e "\n${CYAN}════════════════════════════════════════════════════════════════${NC}"
 echo -e "${GREEN}🎉 writing-standard-skills (v${PACKAGE_VERSION}) 已全量接入本机 Agent 矩阵与本地 GUI！${NC}"
 echo -e "   • 包含平台: DSH / Claude Code / Codex / Antigravity GUI"

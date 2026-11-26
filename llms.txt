@@ -11,9 +11,10 @@
 按 README 把 `skills/` 下对应 skill 放入 agent 的 skills 目录（或用 `install.sh`）。
 
 ## 仓库导览（改代码去哪）
-- `skills/` — 19 个 skill 本体（行为定义）
+- `identity/kernel.md` — 常驻身份内核（中文 / 说人话 / 持续推进 / 脾气 / 技能路由），单一真源，由 install.sh 写入各 Agent 常驻配置
+- `skills/` — 19 个 skill 本体（按需加载的行为定义）
 - `BOUNDARY.md` — 能力边界（什么算写好、什么不归它管）
-- `scripts/` — lint / test
+- `scripts/` — lint / test / check-kernel-sync
 - 协作规矩见 `AGENTS.md`
 
 ## 关键约束

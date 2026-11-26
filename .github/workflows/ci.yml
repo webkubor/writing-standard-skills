@@ -24,3 +24,6 @@ jobs:
 
       - name: Test release-notes tool
         run: node scripts/test-release-notes.mjs
+
+      - name: Check identity kernel source
+        run: node scripts/check-kernel-sync.mjs --ci

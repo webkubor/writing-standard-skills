@@ -23,6 +23,15 @@ curl -fsSL https://raw.githubusercontent.com/webkubor/writing-standard-skills/ma
 | **Cursor** | `.cursor/rules/` | 内容复制进 rules（Cursor 暂不读全局目录） |
 
 
+## 常驻内核（identity/kernel.md）
+
+`identity/kernel.md` 是**常驻身份层**的单一真源：语言、说人话、持续推进、脾气、技能路由。
+它和 `skills/` 的分工是：内核每轮在场，技能按需加载。内核有 60 行硬上限，别把分册细则塞进去。
+
+- 改内核 → 改 `identity/kernel.md`，**不要手改各 Agent 配置里的标记块**。
+- 改完跑 `./install.sh` 写回四端（Claude / Codex / Hermes / OpenCode），再跑 `npm run check:kernel` 核对。
+- `install.sh` 首次写入会在目标文件旁留 `.bak-wss-kernel`，块外内容一概不动。
+
 ## 什么时候该触发哪个
 
 判断顺序：**先看产物形态，再看读者**。

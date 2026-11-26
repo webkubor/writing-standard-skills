@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 新增特性
+- 新增 **常驻身份内核** `identity/kernel.md`：语言（中文）、说人话、持续推进（A/B/C 停手）、脾气档案、技能路由五块，单一真源，60 行硬上限。
+- `install.sh` 新增幂等写入：把内核以 `<!-- wss-kernel:begin/end -->` 标记块写进 Claude Code / Codex / Hermes / OpenCode 的常驻配置，块外内容不动，首次写入留 `.bak-wss-kernel` 备份。
+- 新增 `scripts/check-kernel-sync.mjs`（`npm run check:kernel`）：校验四端内核块与真源一致，CI 下缺文件跳过、漂移报错。
+
+### 文档同步
+- `README.md` 补「两层结构：常驻身份 + 按需技能」；`AGENTS.md` 补内核维护约定；`llms.txt` 补 `identity/` 导览。
+
 ### 缺陷修复
 - 修复 `install.sh` 远程一行安装从任意目录执行时找不到 `skills/` 的问题：首次安装会把源码缓存到 `~/.local/share/writing-standard-skills`。
 - 安装脚本改为从源码自动发现包含 `SKILL.md` 的目录，并从 `package.json` 读取版本号，避免技能清单和安装提示落后于仓库。

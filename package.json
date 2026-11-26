@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "lint": "node scripts/lint-writing.mjs skills/",
-    "test": "node scripts/lint-writing.mjs skills/ && node scripts/test-release-notes.mjs",
-    "test:tool": "node scripts/test-release-notes.mjs"
+    "test": "node scripts/lint-writing.mjs skills/ && node scripts/test-release-notes.mjs && node scripts/check-kernel-sync.mjs --ci",
+    "test:tool": "node scripts/test-release-notes.mjs",
+    "check:kernel": "node scripts/check-kernel-sync.mjs"
   },
   "keywords": [
     "writing-skills",
